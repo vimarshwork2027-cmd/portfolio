@@ -59,6 +59,7 @@ const config: Config = {
         "fade-in": "fadeIn 1s ease-out forwards",
         pulse: "pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite",
         fluid: "fluid 8s ease infinite",
+        shimmer: "shimmer 4s linear infinite",
       },
       keyframes: {
         fadeUp: {

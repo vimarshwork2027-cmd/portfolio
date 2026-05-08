@@ -6,6 +6,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { Check } from "lucide-react";
+import { CaseStudySummary } from "./CaseStudySummary";
 
 const SECTIONS = [
   { id: "overview", label: "Overview" },
@@ -16,13 +17,59 @@ const SECTIONS = [
   { id: "summary", label: "Summary" },
 ];
 
+const Stardust = () => {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) return null;
+
+  return (
+    <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
+      {[...Array(60)].map((_, i) => (
+        <motion.div
+          key={i}
+          className="absolute w-[3px] h-[3px] bg-white rounded-full shadow-[0_0_8px_rgba(255,255,255,0.8)]"
+          initial={{ 
+            x: `${Math.random() * 100}%`, 
+            y: `${Math.random() * 100}%`,
+            opacity: 0,
+            scale: 0
+          }}
+          animate={{
+            opacity: [0, Math.random() * 0.7 + 0.3, 0],
+            scale: [0, Math.random() * 1.5 + 0.5, 0],
+            y: [null, `-${Math.random() * 150 + 100}px`],
+            x: [null, `${(Math.random() - 0.5) * 100}px`]
+          }}
+          transition={{
+            duration: Math.random() * 8 + 6,
+            repeat: Infinity,
+            delay: Math.random() * 10,
+            ease: "easeInOut"
+          }}
+        />
+      ))}
+    </div>
+  );
+};
+
+
 export function CaseStudyPage({ caseStudy }: { caseStudy: any }) {
   const [activeSection, setActiveSection] = useState("overview");
 
   // Derive sections dynamically
-  const dynamicSections = caseStudy.sections 
-    ? [{ id: "overview", label: "Overview" }, ...caseStudy.sections.map((s: any) => ({ id: s.id, label: s.title || s.id }))]
-    : SECTIONS;
+  const dynamicSections = [
+    { id: "overview", label: "Overview", isImportant: true },
+    ...(caseStudy.sections?.map((s: any) => ({ 
+      id: s.id, 
+      label: s.navLabel || s.title || s.id, 
+      isImportant: s.isImportant !== undefined ? s.isImportant : !!s.title 
+    })) || []),
+    ...(caseStudy.summary ? [{ id: "summary", label: "Summary", isImportant: true }] : [])
+  ];
 
   // Scroll spy logic
   useEffect(() => {
@@ -33,7 +80,9 @@ export function CaseStudyPage({ caseStudy }: { caseStudy: any }) {
       for (let i = sectionElements.length - 1; i >= 0; i--) {
         const el = sectionElements[i];
         if (el && el.offsetTop <= scrollPosition) {
-          setActiveSection(dynamicSections[i].id);
+          const currentSection = dynamicSections[i];
+          const nearestImportant = dynamicSections.slice(0, i + 1).reverse().find(s => s.isImportant);
+          setActiveSection(nearestImportant?.id || currentSection.id);
           break;
         }
       }
@@ -67,35 +116,41 @@ export function CaseStudyPage({ caseStudy }: { caseStudy: any }) {
 
   return (
     <motion.div 
+      initial={{ opacity: 0, y: 20 }}
       animate={{ 
+        opacity: 1, 
+        y: 0,
         backgroundColor: isDarkSection ? "#000000" : "#ffffff" 
       }}
       transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-      className="min-h-screen overflow-x-hidden"
+      className="min-h-screen"
     >
       <div className="container-content pt-40 pb-32">
-        <div className="grid grid-cols-1 lg:grid-cols-[100px_1fr] gap-12 lg:gap-24">
+        <div className="grid grid-cols-1 lg:grid-cols-[120px_1fr] gap-12 lg:gap-32">
           
           {/* Left Column: Minimalist Dash Navigation */}
-          <aside className="hidden lg:block">
-            <nav className="sticky top-40 pt-24 md:pt-32 space-y-4 flex flex-col items-start">
-              {dynamicSections.map((section: any) => (
+          <aside className="hidden lg:block h-full relative z-20 lg:-ml-16">
+            <nav className="sticky top-40 space-y-2 flex flex-col items-start h-fit">
+              {dynamicSections.filter(s => s.isImportant).map((section: any) => (
                 <button
                   key={section.id}
                   onClick={() => {
                     document.getElementById(section.id)?.scrollIntoView({ behavior: "smooth" });
                   }}
-                  className="group relative flex items-center py-2 w-full text-left"
-                  title={section.label}
+                  className="group relative flex items-center py-1 w-full text-left"
                 >
-                  <motion.div 
+                  <motion.span 
                     animate={{ 
-                      backgroundColor: isDarkSection ? "#ffffff" : "#000000",
-                      opacity: activeSection === section.id ? 1 : 0.15,
-                      width: activeSection === section.id ? 32 : 24
+                      color: activeSection === section.id 
+                        ? (isDarkSection ? "#ffffff" : "#000000") 
+                        : (isDarkSection ? "rgba(255,255,255,0.5)" : "rgba(0,0,0,0.5)"),
+                      fontWeight: activeSection === section.id ? 600 : 400,
+                      opacity: activeSection === section.id ? 1 : 0.6
                     }}
-                    className="h-[2px] rounded-full transition-all duration-500 group-hover:opacity-50"
-                  />
+                    className="font-sans text-[15px] md:text-[16px] tracking-tight transition-all duration-500"
+                  >
+                    {section.label}
+                  </motion.span>
                 </button>
               ))}
             </nav>
@@ -103,20 +158,17 @@ export function CaseStudyPage({ caseStudy }: { caseStudy: any }) {
 
           {/* Right Column: Content Area */}
           <main className="w-full">
-            <header className="flex items-center gap-4 mb-8 snap-start scroll-mt-40">
-              <motion.div 
-                animate={{ 
-                  backgroundColor: isDarkSection ? "rgba(255, 255, 255, 0.05)" : "rgba(255, 255, 255, 1)",
-                  borderColor: isDarkSection ? "rgba(255, 255, 255, 0.1)" : "rgba(0, 0, 0, 0.05)"
-                }}
-                className="w-12 h-12 rounded-[14px] shadow-sm flex items-center justify-center border overflow-hidden p-2"
-              >
+            <header className="flex items-center gap-3 mb-8 snap-start scroll-mt-40">
+              <div className="w-14 h-14 flex items-center justify-start overflow-hidden">
                 {caseStudy.logo ? (
                   <img src={caseStudy.logo} alt={caseStudy.company} className="w-full h-full object-contain" />
                 ) : (
-                  <span className="text-accent font-bold text-xl">{caseStudy.company?.[0]}</span>
+                  <span className={cn(
+                    "font-bold text-2xl",
+                    isDarkSection ? "text-white" : "text-black"
+                  )}>{caseStudy.company?.[0]}</span>
                 )}
-              </motion.div>
+              </div>
               <div className="flex flex-col">
                 <motion.span 
                   animate={{ color: isDarkSection ? "#ffffff" : "#000000" }}
@@ -159,9 +211,9 @@ export function CaseStudyPage({ caseStudy }: { caseStudy: any }) {
                     key={section.id}
                     id={section.id}
                     className={cn(
-                      "py-12 md:py-16 transition-colors duration-1000 snap-start scroll-mt-40 relative",
+                      "py-12 md:py-16 transition-colors duration-1000 snap-start scroll-mt-40 relative overflow-visible",
                       index === 0 && "!pt-0",
-                      section.id === "breakthrough" ? "min-h-screen flex flex-col justify-center" : "",
+                      section.id === "breakthrough" ? "min-h-[80vh] flex flex-col justify-center" : "",
                       (isDarkSection && section.id === "breakthrough") || section.theme === "dark" && isDarkSection ? "text-white" : "text-black"
                     )}
                     style={{ 
@@ -171,8 +223,9 @@ export function CaseStudyPage({ caseStudy }: { caseStudy: any }) {
                       clipPath: section.bgColor ? "inset(0 -100vmax)" : "none"
                     }}
                   >
+                    {section.isMagical && <Stardust />}
                     <div className={cn(
-                      "max-w-4xl space-y-8",
+                      "max-w-4xl mx-auto space-y-8 relative z-10",
                       section.fullWidth && "max-w-none w-full"
                     )}>
                       <div className="space-y-4">
@@ -195,13 +248,73 @@ export function CaseStudyPage({ caseStudy }: { caseStudy: any }) {
                       </div>
 
                       <div className="space-y-8">
+
                         {section.content && (
-                          <div 
+                          <motion.div 
+                            initial={section.isMagical ? { opacity: 0, y: 40, scale: 0.95, filter: "blur(20px)" } : false}
+                            whileInView={section.isMagical ? { opacity: 1, y: 0, scale: 1, filter: "blur(0px)" } : false}
+                            transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1] }}
+                            viewport={{ once: true }}
                             className={cn(
                               "font-sans text-[18px] leading-relaxed max-w-3xl",
-                              (isDarkSection && section.id === "breakthrough") || section.theme === "dark" && isDarkSection ? "text-white/70" : "text-[#353839]"
+                              (isDarkSection && section.id === "breakthrough") || section.theme === "dark" && isDarkSection ? "text-white/80" : "text-black/80"
                             )}
                             dangerouslySetInnerHTML={{ __html: section.content }}
+                          />
+                        )}
+
+
+                        {section.marqueeImages && (
+                          <div className={cn(
+                            "relative overflow-visible py-12 md:py-20",
+                            section.fullWidth 
+                              ? "w-screen left-[50%] right-[50%] ml-[-50vw] mr-[-50vw]" 
+                              : "w-full"
+                          )}>
+                            <motion.div 
+                              className="flex gap-8 w-fit"
+                              animate={{ x: ["0%", "-50%"] }}
+                              transition={{ 
+                                duration: 30, 
+                                repeat: Infinity, 
+                                ease: "linear" 
+                              }}
+                            >
+                              {[...section.marqueeImages, ...section.marqueeImages].map((img: string, i: number) => (
+                                <div key={i} className="flex-shrink-0">
+                                  <div 
+                                    className={cn(
+                                      "relative h-[246px] md:h-[396px] w-[176px] md:w-[296px] rounded-[24px] md:rounded-[32px] overflow-hidden transition-all duration-500 hover:scale-[1.05]",
+                                      isDarkSection || section.theme === "dark" 
+                                        ? "shadow-none" 
+                                        : "shadow-[0_20px_50px_rgba(0,0,0,0.1)] hover:shadow-[0_30px_60px_rgba(0,0,0,0.15)]"
+                                    )}
+                                    style={{
+                                      rotate: i % 2 === 0 ? "1deg" : "-1deg",
+                                      marginTop: i % 2 === 0 ? "0px" : "20px"
+                                    }}
+                                  >
+                                    <Image 
+                                      src={img} 
+                                      alt="Contest Visual" 
+                                      fill
+                                      className="object-cover"
+                                      sizes="(max-width: 768px) 176px, 296px"
+                                    />
+                                  </div>
+                                </div>
+                              ))}
+                            </motion.div>
+                          </div>
+                        )}
+
+                        {section.secondaryContent && (
+                          <div 
+                            className={cn(
+                              "font-sans text-[18px] leading-relaxed max-w-3xl mt-12",
+                              (isDarkSection && section.id === "breakthrough") || section.theme === "dark" && isDarkSection ? "text-white/80" : "text-black/80"
+                            )}
+                            dangerouslySetInnerHTML={{ __html: section.secondaryContent }}
                           />
                         )}
 
@@ -265,15 +378,6 @@ export function CaseStudyPage({ caseStudy }: { caseStudy: any }) {
                           </div>
                         )}
 
-                        {section.secondaryContent && (
-                          <div 
-                            className={cn(
-                              "font-sans text-[18px] leading-relaxed max-w-3xl mt-12",
-                              (isDarkSection && section.id === "breakthrough") || section.theme === "dark" && isDarkSection ? "text-white/70" : "text-[#353839]"
-                            )}
-                            dangerouslySetInnerHTML={{ __html: section.secondaryContent }}
-                          />
-                        )}
 
                         {section.quote && (
                           <div className={cn(
@@ -307,8 +411,8 @@ export function CaseStudyPage({ caseStudy }: { caseStudy: any }) {
                                 </h3>
                                 {Array.isArray(item.value) ? (
                                   <ul className={cn(
-                                    "space-y-2",
-                                    isDarkSection || section.theme === "dark" ? "text-white/70" : "text-ink-dim"
+                                    "space-y-2 font-sans text-[15px] md:text-[16px]",
+                                    isDarkSection || section.theme === "dark" ? "text-white/80" : "text-black/80"
                                   )}>
                                     {item.value.map((v: string, i: number) => (
                                       <li 
@@ -320,8 +424,8 @@ export function CaseStudyPage({ caseStudy }: { caseStudy: any }) {
                                 ) : (
                                   <p 
                                     className={cn(
-                                      "leading-relaxed",
-                                      isDarkSection || section.theme === "dark" ? "text-white/70" : "text-ink-dim"
+                                      "font-sans text-[15px] md:text-[16px] leading-relaxed",
+                                      isDarkSection || section.theme === "dark" ? "text-white/80" : "text-black/80"
                                     )}
                                     dangerouslySetInnerHTML={{ __html: item.value }}
                                   />
@@ -335,29 +439,29 @@ export function CaseStudyPage({ caseStudy }: { caseStudy: any }) {
                           <div className="space-y-6">
                             {section.imageTitle && (
                               <h3 className={cn(
-                                "font-sans font-medium text-[18px] md:text-[20px] tracking-tight opacity-50",
-                                isDarkSection || section.theme === "dark" ? "text-white" : "text-black"
+                                "font-sans font-medium text-[20px] tracking-tight mb-6",
+                                isDarkSection || section.theme === "dark" ? "text-white/90" : "text-black/90"
                               )}>
                                 {section.imageTitle}
                               </h3>
                             )}
                             <div className={cn(
-                              "relative overflow-hidden w-full",
-                              (section.image.endsWith('.gif') || section.noContainer) 
-                                ? "bg-transparent p-0" 
-                                : isDarkSection || section.theme === "dark"
-                                  ? "bg-white/5 rounded-[32px] md:rounded-[48px] p-6 md:p-10 border border-white/10"
-                                  : "bg-[#F3F3F3] rounded-[32px] md:rounded-[48px] p-6 md:p-10",
-                              section.fullWidth ? "max-w-screen-2xl mx-auto" : "max-w-4xl"
-                            )}>
+                            "relative overflow-hidden w-full mt-12 mx-auto",
+                            (section.image.endsWith('.gif') || section.noContainer) 
+                              ? "bg-transparent p-0" 
+                              : isDarkSection || section.theme === "dark"
+                                ? cn(section.noRadius ? "rounded-none" : "rounded-[32px] md:rounded-[48px]", "bg-white/5 p-6 md:p-10 border border-white/10")
+                                : cn(section.noRadius ? "rounded-none" : "rounded-[32px] md:rounded-[48px]", "bg-[#F9F9F9] p-6 md:p-10"),
+                            section.fullWidth ? "max-w-screen-2xl" : "max-w-3xl"
+                          )}>
                             <img 
                               src={section.image} 
                               alt={section.title || "Section visual"}
                               className={cn(
                                 "w-full h-auto object-contain",
                                 (section.image.endsWith('.gif') || section.noContainer) 
-                                  ? cn("rounded-none shadow-none ml-0", section.fullWidth ? "max-w-screen-2xl" : "max-w-2xl") 
-                                  : section.fullWidth ? "max-w-screen-2xl mx-auto" : "max-w-4xl mx-auto"
+                                  ? cn(section.noRadius ? "rounded-none" : "rounded-[24px] md:rounded-[32px]", "mx-auto", section.fullWidth ? "max-w-screen-2xl" : "max-w-2xl") 
+                                  : section.fullWidth ? "max-w-screen-2xl mx-auto" : "max-w-3xl mx-auto"
                               )}
                             />
                           </div>
@@ -366,12 +470,13 @@ export function CaseStudyPage({ caseStudy }: { caseStudy: any }) {
 
                         {section.image2 && (
                           <div className={cn(
-                            "relative overflow-hidden w-full mt-8",
+                            "relative overflow-hidden w-full mt-8 mx-auto",
                             (section.image2.endsWith('.gif') || section.noContainer) 
                               ? "bg-transparent p-0" 
                               : isDarkSection || section.theme === "dark"
-                                ? "bg-white/5 rounded-[32px] md:rounded-[48px] p-6 md:p-10 border border-white/10"
-                                : "bg-[#F3F3F3] rounded-[32px] md:rounded-[48px] p-6 md:p-10"
+                                ? cn(section.noRadius ? "rounded-none" : "rounded-[32px] md:rounded-[48px]", "bg-white/5 p-6 md:p-10 border border-white/10")
+                                : cn(section.noRadius ? "rounded-none" : "rounded-[32px] md:rounded-[48px]", "bg-[#F9F9F9] p-6 md:p-10"),
+                            "max-w-3xl"
                           )}>
                             <img 
                               src={section.image2} 
@@ -379,8 +484,8 @@ export function CaseStudyPage({ caseStudy }: { caseStudy: any }) {
                               className={cn(
                                 "w-full h-auto object-contain mx-auto",
                                 (section.image2.endsWith('.gif') || section.noContainer) 
-                                  ? "max-w-2xl rounded-none shadow-none" 
-                                  : "max-w-4xl"
+                                  ? cn(section.noRadius ? "rounded-none" : "max-w-2xl rounded-[24px] md:rounded-[32px]", "mx-auto") 
+                                  : "max-w-3xl"
                               )}
                             />
                           </div>
@@ -388,12 +493,13 @@ export function CaseStudyPage({ caseStudy }: { caseStudy: any }) {
 
                         {section.image3 && (
                           <div className={cn(
-                            "relative overflow-hidden w-full mt-8",
+                            "relative overflow-hidden w-full mt-8 mx-auto",
                             (section.image3.endsWith('.gif') || section.noContainer) 
                               ? "bg-transparent p-0" 
                               : isDarkSection || section.theme === "dark"
-                                ? "bg-white/5 rounded-[32px] md:rounded-[48px] p-6 md:p-10 border border-white/10"
-                                : "bg-[#F3F3F3] rounded-[32px] md:rounded-[48px] p-6 md:p-10"
+                                ? cn(section.noRadius ? "rounded-none" : "rounded-[32px] md:rounded-[48px]", "bg-white/5 p-6 md:p-10 border border-white/10")
+                                : cn(section.noRadius ? "rounded-none" : "rounded-[32px] md:rounded-[48px]", "bg-[#F9F9F9] p-6 md:p-10"),
+                            "max-w-3xl"
                           )}>
                             <img 
                               src={section.image3} 
@@ -401,68 +507,20 @@ export function CaseStudyPage({ caseStudy }: { caseStudy: any }) {
                               className={cn(
                                 "w-full h-auto object-contain mx-auto",
                                 (section.image3.endsWith('.gif') || section.noContainer) 
-                                  ? "max-w-2xl rounded-none shadow-none" 
-                                  : "max-w-4xl"
+                                  ? cn(section.noRadius ? "rounded-none" : "max-w-2xl rounded-[24px] md:rounded-[32px]", "mx-auto") 
+                                  : "max-w-3xl"
                               )}
                             />
                           </div>
                         )}
 
 
-                        {section.marqueeImages && (
-                          <div className="relative w-screen left-1/2 -translate-x-1/2 overflow-hidden py-20">
-                            <div className={cn(
-                              "absolute left-0 top-0 bottom-0 w-32 md:w-64 z-10 pointer-events-none transition-opacity duration-1000",
-                              activeSection === section.id ? "opacity-100" : "opacity-0",
-                              section.theme === "dark"
-                                ? "bg-gradient-to-r from-black to-transparent" 
-                                : "bg-gradient-to-r from-white to-transparent"
-                            )} />
-                            <div className={cn(
-                              "absolute right-0 top-0 bottom-0 w-32 md:w-64 z-10 pointer-events-none transition-opacity duration-1000",
-                              activeSection === section.id ? "opacity-100" : "opacity-0",
-                              section.theme === "dark"
-                                ? "bg-gradient-to-l from-black to-transparent" 
-                                : "bg-gradient-to-l from-white to-transparent"
-                            )} />
-                            
-                            <motion.div 
-                              className="flex gap-8 w-fit"
-                              animate={{ x: ["0%", "-50%"] }}
-                              transition={{ 
-                                duration: 30, 
-                                repeat: Infinity, 
-                                ease: "linear" 
-                              }}
-                            >
-                              {[...section.marqueeImages, ...section.marqueeImages].map((img: string, i: number) => (
-                                <div key={i} className="flex-shrink-0">
-                                  <div 
-                                    className="relative h-[250px] md:h-[400px] w-[180px] md:w-[300px] rounded-[24px] md:rounded-[32px] overflow-hidden bg-white shadow-[0_20px_50px_rgba(0,0,0,0.1)] transition-all duration-500 hover:scale-[1.05] hover:shadow-[0_30px_60px_rgba(0,0,0,0.15)]"
-                                    style={{
-                                      rotate: i % 2 === 0 ? "1deg" : "-1deg",
-                                      marginTop: i % 2 === 0 ? "0px" : "20px"
-                                    }}
-                                  >
-                                    <Image 
-                                      src={img} 
-                                      alt="Contest Visual" 
-                                      fill
-                                      className="object-cover"
-                                      sizes="(max-width: 768px) 180px, 300px"
-                                    />
-                                  </div>
-                                </div>
-                              ))}
-                            </motion.div>
-                          </div>
-                        )}
 
                         {section.statements && (
                           <div className="space-y-8 mt-12 max-w-4xl">
                             {section.statementsTitle && (
                               <h3 className={cn(
-                                "font-sans font-bold text-[20px] tracking-tight mb-6",
+                                "font-sans font-medium text-[20px] tracking-tight mb-6",
                                 isDarkSection || section.theme === "dark" ? "text-white/90" : "text-black/90"
                               )}>
                                 {section.statementsTitle}
@@ -513,7 +571,7 @@ export function CaseStudyPage({ caseStudy }: { caseStudy: any }) {
                           <div 
                             className={cn(
                               "font-sans text-[18px] leading-relaxed max-w-3xl",
-                              (isDarkSection && section.id === "breakthrough") || section.theme === "dark" && isDarkSection ? "text-white/60" : "text-black/60"
+                              (isDarkSection && section.id === "breakthrough") || section.theme === "dark" && isDarkSection ? "text-white/80" : "text-black/80"
                             )}
                             dangerouslySetInnerHTML={{ __html: section.subContent }}
                           />
@@ -530,6 +588,7 @@ export function CaseStudyPage({ caseStudy }: { caseStudy: any }) {
                     </div>
                   </section>
                 ))}
+
               </div>
             ) : (
               /* Fallback to original layout */
@@ -626,6 +685,16 @@ export function CaseStudyPage({ caseStudy }: { caseStudy: any }) {
           </main>
         </div>
       </div>
+      {caseStudy.summary && (
+        <div id="summary" className="snap-start scroll-mt-40">
+          <CaseStudySummary 
+            title={caseStudy.summary.title}
+            items={caseStudy.summary.items}
+            reviews={caseStudy.summary.reviews}
+            isDark={isDarkSection}
+          />
+        </div>
+      )}
     </motion.div>
   );
 }

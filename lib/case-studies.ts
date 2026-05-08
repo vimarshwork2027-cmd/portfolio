@@ -36,6 +36,12 @@ export type CaseStudy = {
   miss?: string; // what didn't work — honesty block
   learnings?: string[];
   externalLink?: { label: string; url: string };
+  sections?: any[];
+  summary?: {
+    title: string;
+    items: { title: string; description: string; image: string }[];
+    reviews?: { stars: number; text: string; date: string; author?: string }[];
+  };
 };
 
 export const caseStudies: CaseStudy[] = [
@@ -127,7 +133,7 @@ export const caseStudies: CaseStudy[] = [
     tagline: "A spatial layer over 40,000 cities",
     hero: "Designing a map-first discovery experience that turned 'what's near me' from a filter into a first-class surface — and shipped it without breaking the list-first flow that 60% of users still prefer.",
     company: "AllEvents",
-    role: "Lead Product Designer",
+    role: "Lead Designer",
     team: "1 designer · 2 engineers · 1 PM · 1 backend",
     timeline: "8 weeks · shipped Jan 2026",
     scope: "End-to-end design, clustering logic spec, empty states",
@@ -243,9 +249,9 @@ export const caseStudies: CaseStudy[] = [
         title: "Iteration 02: Conditional Entry",
         options:
           "In Iteration 01, we saw only 28% of users brought a friend because sharing was passive. For Iteration 02, we could either increase rewards or change the entry requirement.",
-        pick: "Made contest entry conditional on inviting at least one friend.",
+        pick: "We decided to flip the script. We stopped asking for invites and started requiring them.",
         reason:
-          "Users only got their entry once a friend installed the app and joined the contest. This turned passive 'broadcasters' into active 'recruiters'. The 28% number was our most useful failure — it showed that sharing didn't equal recruiting.",
+          "We gave them everything—the tickets, the easy sharing, the hype—but only 28% brought a friend. That was our 'Aha!' moment: users were broadcasting to their feed, but they weren't actually recruiting their friends. Making 'bring one friend' a mandatory requirement turned passive broadcasters into active stakeholders.",
         tradeoff:
           "Higher friction for entry, but 76% of users actually brought a friend.",
       },
@@ -265,16 +271,18 @@ export const caseStudies: CaseStudy[] = [
       {
         id: "about",
         title: "About AllEvents",
+        navLabel: "Context",
+        isImportant: false,
         content: "<a href='https://allevents.in' target='_blank' class='text-black/80 hover:text-black underline underline-offset-4 decoration-black/20 hover:decoration-black/40 transition-all'>AllEvents</a> is a global event discovery and ticketing platform that helps people find and attend events around them — from concerts and meetups to workshops and festivals. You can explore it on the App Store and Play Store.",
         metadata: [
           {
             label: "My role",
-            value: "Led end-to-end research and design for this viral growth experiment, collaborating with cross-functional teams to drive app acquisition through organic friend networks."
+            value: "Led research and end-to-end design for this viral growth experiment to drive organic app acquisition."
           },
           {
             label: "Team",
             value: [
-              "<a href='https://www.linkedin.com/in/achyuth7/' target='_blank' class='hover:text-black underline underline-offset-4 decoration-black/10 hover:decoration-black/30 transition-all'>Achyuth Yarramsetti</a> (Lead Product Designer & Product Owner)",
+              "<a href='https://www.linkedin.com/in/achyuth7/' target='_blank' class='hover:text-black underline underline-offset-4 decoration-black/10 hover:decoration-black/30 transition-all'>Achyuth Yarramsetti</a> (Lead Designer & Product Owner)",
               "<a href='https://www.linkedin.com/in/navaghandabhi/' target='_blank' class='hover:text-black underline underline-offset-4 decoration-black/10 hover:decoration-black/30 transition-all'>Navghan Dabhi</a> (Lead App Developer)",
               "<a href='https://www.linkedin.com/in/kush-malukani-0378831a1/' target='_blank' class='hover:text-black underline underline-offset-4 decoration-black/10 hover:decoration-black/30 transition-all'>Kush Malukani</a> (Product Marketing Executive)"
             ]
@@ -284,10 +292,11 @@ export const caseStudies: CaseStudy[] = [
       {
         id: "challenge",
         title: "Let’s break down the problem",
+        navLabel: "Problem",
         bgColor: "#F8F8F8",
         noContainer: true,
         fullWidth: false,
-        content: "<strong>User behaviour</strong><br/><br/>In the real world, <strong>people rarely attend events alone</strong> — they plan and experience them with friends. Yet, inside AllEvents, this journey was surprisingly lonely. Users were RSVPing in isolation, while shared links often led friends to the web instead of the app.",
+        content: "<div class='font-sans font-medium text-[20px] tracking-tight mb-6 text-black/90'>User behaviour</div>In the real world, <strong>people rarely attend events alone</strong> — they plan and experience them with friends. Yet, inside AllEvents, this journey was surprisingly lonely. Users were RSVPing in isolation, while shared links often led friends to the web instead of the app.",
         gridImages: [
           "/images/case-studies/viral-contest/attendingwithfriends.png",
           "/images/case-studies/viral-contest/attendingwithfriends2.png",
@@ -295,37 +304,44 @@ export const caseStudies: CaseStudy[] = [
           "/images/case-studies/viral-contest/attendingwithfriends4.png"
         ],
         gridCaveat: "People going alone to events is very very rare use case",
-        secondaryContent: "<strong>Problem</strong><br/><br/>This fragmentation meant missing a major opportunity for <strong>organic app downloads</strong>. Instead of forcing installs, we needed a way to naturally bring <strong>real-world circles into the app</strong>, allowing friend groups to exist inside AllEvents.<br/><br/>This insight became the foundation for a new growth initiative to make AllEvents viral within friend groups. If we could encourage users to bring their friends onto the app, we could:",
+        secondaryContent: "<div class='font-sans font-medium text-[20px] tracking-tight mb-6 text-black/90'>Problem</div>This fragmentation meant missing a major opportunity for <strong>organic app downloads</strong>. Instead of forcing installs, we needed a way to naturally bring <strong>real-world circles into the app</strong>, allowing friend groups to exist inside AllEvents.<br/><br/>This insight became the foundation for a new growth initiative to make AllEvents viral within friend groups. If we could encourage users to bring their friends onto the app, we could:",
         quote: "Most users attend events with friends who are not yet on AllEvents."
       },
       {
         id: "goal",
         title: "The Goal",
+        navLabel: "Goal",
+        isImportant: false,
         content: "Motivate existing users to bring at least one friend into the AllEvents app to drive organic installs through friend-driven sharing. Our core hypothesis: <strong>If we reward or motivate users for bringing their friends to the app, installs will grow organically</strong> — and as friend circles form inside the app, users may return more frequently.",
         statementsTitle: "Defined Problem Statement",
         statements: [
           {
             label: "Business Statement",
-            text: "Drive organic acquisition and retention by motivating existing users to bring their friends into the app ecosystem."
+            text: "Drive organic growth by motivating users to bring their real-world friend groups into the app."
           },
           {
             label: "User Statement",
-            text: "Sharing was happening, but friends were getting stuck on the web. We needed an incentivized, frictionless flow that naturally pulls these real-world social circles into the app."
+            text: "Sharing happened, but friends stayed on the web. We needed a way to pull those real-world circles into the app."
           }
         ]
       },
       {
         id: "ideation",
         title: "Ideation & Early Direction",
-        content: "<span class='text-[32px] md:text-[42px] text-black/20 italic leading-[1.1] mb-10 block font-sans tracking-tight'>How might we design viral incentives that encourage users to invite their friends, turning social connections into a driver for organic app growth?</span>To explore this, we began with multiple directions for social-driven acquisition — referral bonuses, invite-based rewards, and group discounts. While each had potential, they felt transactional and didn't match how people emotionally experience events. Events are social, memorable, shared with friends — not coupons.",
-        image: "/images/case-studies/viral-contest/ideation.png",
+        navLabel: "Ideation",
+        isImportant: false,
+        content: "<span class='text-[32px] md:text-[42px] text-black/20 italic leading-[1.1] mb-10 block font-sans tracking-tight'>How might we design viral incentives that encourage users to invite their friends, turning social connections into a driver for organic app growth?</span><div class='mb-12'><img src='/images/case-studies/viral-contest/ideation.png' class='w-full max-w-4xl h-auto' /></div>We explored multiple acquisition models for social-driven acquisition — referral bonuses, invite-based rewards, and group discounts. While each had potential, they felt transactional and didn't match how people emotionally experience events. Events are social, memorable, shared with friends — not coupons.",
         noContainer: true
       },
       {
         id: "breakthrough",
         theme: "dark",
+        isMagical: true,
         title: "The Breakthrough",
-        content: "Then came the insight: Users love iconic events — Coldplay concerts, Samay Raina shows, major festivals — but these often sell out or get too expensive. That led to one powerful idea: 'What if users could win tickets to these big events simply by inviting their friends?' Even if the event wasn't listed on AllEvents, the excitement around it was enough to drive massive sharing. It tied together: Emotional appeal — win tickets to a dream event, and Natural social behavior — invite friends to increase your chances. Contests became the strongest viral mechanism on the table.",
+        navLabel: "Breakthrough",
+        fullWidth: true,
+        content: "Then came the insight:<br/><br/><strong class='block text-[17px] md:text-[20px] leading-tight'><span class='magical-shimmer'>People don’t share events for discounts. They share experiences worth talking about.</span></strong><br/><br/>Coldplay. Samay Raina. Major festivals.<br/>The kind of events people dream of attending.",
+        secondaryContent: "<strong>One key idea:</strong><br/>Win tickets to iconic events by inviting friends.<br/><br/>The emotional pull was strong enough to drive sharing naturally, regardless of where the event was hosted.",
         marqueeImages: [
           "/images/case-studies/viral-contest/breakthrough1.png",
           "/images/case-studies/viral-contest/breakthrough2.png",
@@ -337,78 +353,145 @@ export const caseStudies: CaseStudy[] = [
       },
       {
         id: "context-details",
-        title: "Context — What the Contest Is & How It Works",
-        content: "We built a simple contest around a highly popular or sold-out event — something users genuinely cared about.<br/><br/>For each contest, we selected one iconic event and secured four tickets through our contacts: two winners, two tickets each.<br/><br/>Users earned points by participating and inviting friends. At the contest deadline, the top two scorers won the tickets. A clear event + a clear reward + a simple scoring system made the contest instantly understandable.",
+        title: "Contest Mechanics",
+        navLabel: "MVP",
+        isImportant: true,
+        content: "We built a simple contest around a highly popular or sold-out event — something users genuinely cared about.<br/><br/>For each contest, we selected one iconic event and secured four tickets through our contacts: two winners, two tickets each.",
         image: "/images/case-studies/viral-contest/pointssystem.png",
-        imageTitle: "Point System",
+        imageTitle: "How Users Earned Points",
         noContainer: true,
-        subContent: "This balanced effort and reward — users got initial credit for participation but were strongly motivated to invite more friends to climb the leaderboard. The simplicity ensured anyone could understand it instantly and share without confusion.<br/><br/>To maintain credibility, we verified each entry through device IDs, email, name, and phone number. Suspicious or duplicate entries were flagged and disqualified, keeping the contest clean and trustworthy."
+        noRadius: true,
+        subContent: "Users earned points by participating and inviting friends. At the contest deadline, the top two scorers won the tickets. A clear event + a clear reward + a simple scoring system made the contest instantly understandable.<br/><br/><div class='font-sans font-medium text-[20px] tracking-tight mb-6 text-black/90'>Maintaining Fairness</div>To prevent spam and fake entries, we verified users through:<br/><br/>• Device IDs<br/>• Email<br/>• Phone number<br/><br/>Suspicious entries were automatically disqualified."
       },
       {
         id: "execution",
         title: "Execution Plan",
-        content: "Ideation took just two days — a fast, structured sprint across product, design, and engineering. The main technical challenge was enabling multiple contests to go live dynamically without requiring new app releases. To solve this, we designed a contest management dashboard powered by backend APIs, allowing the team to create and manage campaigns in real time.<br/><br/>In just two weeks, we moved from concept → design → live MVP — proving how fast, lean experiments can validate viral growth ideas."
+        navLabel: "Execution",
+        isImportant: false,
+        content: "Ideation took just two days — a rapid sprint across product, design, and engineering.<br/><br/>The biggest technical challenge was enabling multiple contests to launch dynamically without requiring app updates. To solve this, we built a lightweight contest management system powered by backend APIs, allowing campaigns to go live in real time.<br/><br/>Within two weeks, we moved from:<br/><br/><strong>Concept → Design → Live MVP</strong><br/><br/>The experiment proved how quickly lean execution could validate a viral growth hypothesis."
       },
       {
         id: "flow",
         title: "User Flow",
-        subtitle: "Contest Discovery → Participation → Virality",
-        content: "To support a smooth and viral contest experience, we designed a clear, linear flow that guides users from discovering the contest → downloading the app → participating → inviting friends. Every touchpoint — web, app, or external channel — was intentionally crafted to contribute to app installs, participation, and referrals.",
+        navLabel: "Flow",
+        isImportant: false,
         image: "/images/case-studies/viral-contest/userflow-1.png",
         noContainer: true,
+        noRadius: true,
         fullWidth: true
       },
       {
         id: "iteration-01",
         title: "Iteration 01 — MVP Design",
+        navLabel: "MVP",
+        isImportant: false,
         image: "/images/case-studies/viral-contest/iteration1.png",
         noContainer: true,
+        noRadius: true,
         fullWidth: true,
         content: "To drive traffic into the contest flow, we activated a set of high-impact touchpoints: Emailers, Website Contest Page, Social Media, and Meta Ads."
       },
       {
         id: "impact-01",
         title: "Impact — Iteration 01",
+        navLabel: "Impact",
         image: "/images/case-studies/viral-contest/Impact-1.png",
         noContainer: true,
+        noRadius: true,
         fullWidth: true,
         content: "We launched 8 contests across Mumbai & Ahmedabad during August and September."
       },
       {
+        id: "learnings-01",
+        content: "<div class='bg-gray-50/30 rounded-3xl p-2 border border-gray-100 shadow-sm'><div class='grid md:grid-cols-2 gap-2'><div class='bg-emerald-50/50 rounded-2xl p-8 border border-emerald-100/50'><div><div class='label-mono text-[11px] font-bold uppercase tracking-[0.1em] text-emerald-700/50 mb-6'>Key Learnings</div><div class='space-y-4 text-[15px]'><div class='flex gap-3 text-black/80'><span class='text-emerald-500/40 font-bold'>•</span><div><strong>Bigger Events</strong> drive higher participation.</div></div><div class='flex gap-3 text-black/80'><span class='text-emerald-500/40 font-bold'>•</span><div><strong>Sold-out Events</strong> are the strongest motivators.</div></div><div class='flex gap-3 text-black/80'><span class='text-emerald-500/40 font-bold'>•</span><div><strong>The Gap:</strong> Most users broadcasted; few recruited.</div></div><div class='flex gap-3 text-black/80'><span class='text-emerald-500/40 font-bold'>•</span><div><strong>28% Metric:</strong> Low conversion of social shares to app joins.</div></div></div></div></div><div class='bg-blue-50/50 rounded-2xl p-8 border border-blue-100/50'><div><div class='label-mono text-[11px] font-bold uppercase tracking-[0.1em] text-blue-700/50 mb-6'>Iteration 02 Direction</div><div class='space-y-3 text-[15px]'><div class='flex items-center gap-3 py-2.5 px-4 bg-white/70 rounded-xl border border-blue-200/50 text-blue-900/70 shadow-sm'><span class='text-blue-400/50 font-bold'>→</span><span>Stronger gamification mechanics</span></div><div class='flex items-center gap-3 py-2.5 px-4 bg-white/70 rounded-xl border border-blue-200/50 text-blue-900/70 shadow-sm'><span class='text-blue-400/50 font-bold'>→</span><span>Clarity in referral motivation</span></div><div class='flex items-center gap-3 py-2.5 px-4 bg-white/70 rounded-xl border border-blue-200/50 text-blue-900/70 shadow-sm'><span class='text-blue-400/50 font-bold'>→</span><span>Mandatory 'Bring 1 Friend' unlock</span></div></div></div></div></div></div>"
+      },
+      {
         id: "thinking",
-        title: "Thinking",
+        title: "2nd Iteration",
+        navLabel: "Loop",
+        isImportant: false,
         image: "/images/case-studies/viral-contest/userflow-2.png",
+        imageTitle: "Updated User Flow",
         noContainer: true,
+        noRadius: true,
         fullWidth: true,
-        content: "The 28% number was the most useful failure of the project. Going in, we'd assumed that sharing would equal recruiting — that if users shared a contest link, their friends would naturally join. The data said something else: users were broadcasting, not inviting. Sharing felt like a low-effort, low-stakes social signal — closer to retweeting than to actually asking a friend to come along. The fix wasn't to motivate users harder. It was to remove sharing as a passive choice altogether. If 'bring one friend' became the entry requirement instead of an optional bonus, we'd convert broadcasters into recruiters."
+        content: "<div class='mb-10'><div class='font-sans font-medium text-[20px] tracking-tight mb-6 text-black/90'>Problem Statement</div><div class='text-[18px] leading-relaxed'>In Iteration 01, sharing a link was enough to enter. Most users stopped there—so only 28% brought a friend, limiting virality. The contest needed a mechanism that required at least one friend to join.</div></div><div class='font-sans font-medium text-[20px] tracking-tight mb-6 text-black/90'>The Insight</div><div class='opacity-70 text-[16px] leading-relaxed'>We gave them everything—the tickets, the easy sharing, the hype—but only 28% brought a friend. That was our 'Aha!' moment: users were broadcasting to their feed, but they weren't actually recruiting their friends.<br/><br/><strong>The Solution:</strong> We decided to flip the script. We stopped asking for invites and started requiring them. By making 'bring one friend' a mandatory entry requirement, we turned passive broadcasters into active stakeholders.</div>"
       },
       {
         id: "iteration-02",
         title: "Iteration 02 — The Solution",
+        navLabel: "Solution",
         image: "/images/case-studies/viral-contest/iteration2.png",
         noContainer: true,
+        noRadius: true,
         fullWidth: true,
-        content: "We made contest entry conditional on inviting at least one friend. Users only got their entry once a friend installed the app and joined the contest. This turned passive sharing into active referral. We also improved the flow, UI clarity, and leaderboard to make participation more exciting and gamified."
+        content: "We decided to flip the script. We stopped asking for invites and started requiring them—making entry conditional on at least one friend joining. This turned passive broadcasters into active stakeholders and converted social shares into real growth. We also improved the flow, UI clarity, and leaderboard to make participation more exciting and gamified."
       },
       {
         id: "impact-02",
         title: "Impact — Iteration 02",
+        navLabel: "Impact",
         image: "/images/case-studies/viral-contest/Impact-2.png",
         noContainer: true,
+        noRadius: true,
         fullWidth: true,
         content: "We launched 8 contests in Mumbai & Ahmedabad again in October."
       },
       {
+        id: "comparison",
+        content: "<div class='font-sans font-medium text-[20px] tracking-tight mb-6 text-black/90'>Before vs After</div>",
+        image: "/images/case-studies/viral-contest/beforevsafter.png",
+        noRadius: true
+      },
+      {
         id: "future",
         title: "Future Plan",
+        navLabel: "Future",
+        isImportant: false,
         content: "With more friend circles entering the app, we observed higher RSVP notifications and increased app launches. The next step is to understand how these circles behave and leverage their group activity to improve retention. Next focus areas: Study engagement patterns, identify triggers, build group-activation features, and A/B test reward formats."
       },
       {
         id: "closing",
         title: "The biggest lesson",
+        navLabel: "Lesson",
+        isImportant: false,
         content: "Virality isn't a feature. It's a constraint. The moment we made 'bring one friend' a requirement instead of a request, the numbers fixed themselves."
       }
-    ]
+    ],
+    summary: {
+      title: "In summary, I boosted viral growth by:",
+      items: [
+        {
+          title: "Redesigning the Loop",
+          description: "Converted passive sharing into mandatory referral loops.",
+          image: "/images/case-studies/viral-contest/summary1.png"
+        },
+        {
+          title: "Gamifying Participation",
+          description: "Tiered leaderboards transformed participation into competition.",
+          image: "/images/case-studies/viral-contest/summary2.png"
+        },
+        {
+          title: "Building Trust",
+          description: "Driven 6.1K app downloads via pure organic virality.",
+          image: "/images/case-studies/viral-contest/summary3.png"
+        }
+      ],
+      reviews: [
+        {
+          stars: 5,
+          text: "It is a wonderful and user friendly app for discovering events. The referral contest made it so easy to invite my friends and win tickets!",
+          date: "22 Oct",
+          author: "Google Play Store"
+        },
+        {
+          stars: 5,
+          text: "Super fast execution of the contest. The leaderboard updates in real-time which makes the competition very exciting.",
+          date: "20 Oct",
+          author: "Google Play Store"
+        }
+      ]
+    }
   },
   {
     slug: "things-to-do",
