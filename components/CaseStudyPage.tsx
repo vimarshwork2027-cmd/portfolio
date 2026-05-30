@@ -251,8 +251,8 @@ export function CaseStudyPage({ caseStudy }: { caseStudy: any }) {
 
                         {section.content && (
                           <motion.div 
-                            initial={section.isMagical ? { opacity: 0, y: 40, scale: 0.95, filter: "blur(20px)" } : false}
-                            whileInView={section.isMagical ? { opacity: 1, y: 0, scale: 1, filter: "blur(0px)" } : false}
+                            initial={section.isMagical ? { opacity: 0, y: 40, scale: 0.95, filter: "blur(20px)" } : undefined}
+                            whileInView={section.isMagical ? { opacity: 1, y: 0, scale: 1, filter: "blur(0px)" } : undefined}
                             transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1] }}
                             viewport={{ once: true }}
                             className={cn(
@@ -394,7 +394,7 @@ export function CaseStudyPage({ caseStudy }: { caseStudy: any }) {
                               "font-sans text-[20px] md:text-[22px] font-medium italic leading-relaxed",
                               isDarkSection || section.theme === "dark" ? "text-white/90" : "text-black/80"
                             )}>
-                              "{section.quote}"
+                              &ldquo;{section.quote}&rdquo;
                             </p>
                           </div>
                         )}
@@ -558,7 +558,7 @@ export function CaseStudyPage({ caseStudy }: { caseStudy: any }) {
                                     "font-sans text-[16px] md:text-[18px] leading-relaxed font-medium italic",
                                     isDarkSection || section.theme === "dark" ? "text-white/90" : "text-slate-800"
                                   )}>
-                                    "{statement.text}"
+                                    &ldquo;{statement.text}&rdquo;
                                   </p>
                                 </div>
                               </div>

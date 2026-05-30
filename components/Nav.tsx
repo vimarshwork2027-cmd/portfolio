@@ -7,7 +7,7 @@ import { usePathname } from "next/navigation";
 import { Home, Briefcase, Sparkles, User, Camera } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-export function Nav() {
+export function Nav({ statusText }: { statusText?: string }) {
   const pathname = usePathname();
   const [activeHash, setActiveHash] = useState("");
   const [theme, setTheme] = useState("light");

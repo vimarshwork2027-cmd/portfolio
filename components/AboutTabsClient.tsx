@@ -53,6 +53,7 @@ export function AboutTabsClient({
   const contentMap = [
     (
       <motion.div 
+        key="tab-story"
         variants={containerVariants} 
         initial="initial" 
         animate="animate" 
@@ -97,19 +98,19 @@ export function AboutTabsClient({
       </motion.div>
     ),
     (
-      <motion.div variants={containerVariants} initial="initial" animate="animate" className="font-sans text-[16px] md:text-[18px] text-ink-dim leading-relaxed space-y-8">
+      <motion.div key="tab-hiring" variants={containerVariants} initial="initial" animate="animate" className="font-sans text-[16px] md:text-[18px] text-ink-dim leading-relaxed space-y-8">
         <motion.p variants={itemVariants}>
           <strong className="text-ink font-bold block mb-2 text-[18px] md:text-[20px] tracking-tight">Looking for a product-minded designer?</strong>
           I am currently open to B2C and growth product design roles, whether based in India or remote. My previous experience at AllEvents scaling discovery past 20M users means I know how to design for high-velocity environments where every pixel needs to justify its existence through conversion and retention.
         </motion.p>
         <motion.p variants={itemVariants}>
           <strong className="text-ink font-bold block mb-2 text-[18px] md:text-[20px] tracking-tight">I am available to start immediately.</strong>
-          If you think I'd be a good fit for your team, let's talk.
+          If you think I&apos;d be a good fit for your team, let&apos;s talk.
         </motion.p>
       </motion.div>
     ),
     (
-      <motion.div variants={containerVariants} initial="initial" animate="animate" className="font-sans text-[16px] md:text-[18px] text-ink-dim leading-relaxed space-y-8">
+      <motion.div key="tab-team" variants={containerVariants} initial="initial" animate="animate" className="font-sans text-[16px] md:text-[18px] text-ink-dim leading-relaxed space-y-8">
         <motion.p variants={itemVariants}>
           <strong className="text-ink font-bold block mb-2 text-[18px] md:text-[20px] tracking-tight">I believe in radical collaboration.</strong>
           Design doesn&rsquo;t happen in a vacuum. My best work happens when I am closely paired with engineering and product management. I heavily prioritize unblocking developers through clean specs and prototyping, while aligning with PMs on exact business outcomes rather than just aesthetic goals.
@@ -121,7 +122,7 @@ export function AboutTabsClient({
       </motion.div>
     ),
     (
-      <motion.div variants={containerVariants} initial="initial" animate="animate" className="font-sans text-[16px] md:text-[18px] text-ink-dim leading-relaxed space-y-8">
+      <motion.div key="tab-founder" variants={containerVariants} initial="initial" animate="animate" className="font-sans text-[16px] md:text-[18px] text-ink-dim leading-relaxed space-y-8">
         <motion.p variants={itemVariants}>
           <strong className="text-ink font-bold block mb-2 text-[18px] md:text-[20px] tracking-tight">I understand the stakes.</strong>
           Having run my own independent practice (Glint), I deeply understand that design resources are finite and runways are real. I index heavily on moving fast, shipping iteratively, and prioritizing growth loops—viral mechanics, SEO-led acquisition, and activation funnels.

@@ -126,7 +126,7 @@ export const WovenGraph = () => {
 
           {/* Vertical Scrubber Line */}
           <motion.line 
-            style={{ x1: pointerX, x2: pointerX, opacity: isHovered ? 0.35 : 0 }}
+            {...{ style: { x1: pointerX, x2: pointerX, opacity: isHovered ? 0.35 : 0 } } as any}
             y1="-5" y2="45"
             stroke="#2511CC" strokeWidth="0.7" strokeDasharray="3 3"
           />

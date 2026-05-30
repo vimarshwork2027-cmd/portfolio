@@ -8,7 +8,7 @@ import { PhotographySection } from "@/components/PhotographySection";
 
 export default function Home() {
   const profileData = site;
-  const publishedProjects = site.projects;
+  const publishedProjects = site.experience.flatMap(exp => exp.projects);
   const testimonialData = site.testimonials;
   const experimentData = site.experiments;
   const buckets = site.pegboard.buckets.map(bucket => ({
@@ -20,8 +20,6 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-bg selection:bg-accent-soft selection:text-accent-ink">
       <Hero
-        part2={profileData.headline.part2}
-        subCopy={profileData.tagline}
         profilePhotoUrl={profileData.avatarUrl}
         statusLabel={profileData.status.label}
       />

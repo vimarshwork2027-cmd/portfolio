@@ -20,8 +20,8 @@ export default async function CaseStudy({ params }: { params: Promise<{ slug: st
   const caseStudy = {
     ...projectData,
     ...detailedData,
-    description: detailedData?.hero || projectData.heroParagraph || projectData.description, 
-    failures: detailedData?.miss || projectData.miss,
+    description: detailedData?.hero || (projectData as any).heroParagraph || projectData.description, 
+    failures: detailedData?.miss || (projectData as any).miss,
     // Ensure company logo is available (from parent experience)
     logo: site.experience.find(exp => exp.projects.some(p => p.slug === slug))?.logo
   };

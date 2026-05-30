@@ -209,7 +209,7 @@ function TimelineRow({
   );
 }
 
-function SkillBlock({ title, desc }: { title: string; desc: string }) {
+function SkillBlock({ title, desc, Icon }: { title: string; desc: string; Icon?: LucideIcon }) {
   return (
     <motion.div 
       initial={{ opacity: 0, y: 20 }}
@@ -218,7 +218,7 @@ function SkillBlock({ title, desc }: { title: string; desc: string }) {
       className="flex flex-col gap-6 p-8 rounded-[32px] bg-white border border-black/5 shadow-[0_8px_24px_rgba(0,0,0,0.02)] hover:shadow-[0_32px_64px_rgba(0,0,0,0.06)] hover:-translate-y-1 transition-all duration-500 group"
     >
       <div className="h-12 w-12 rounded-2xl bg-accent-soft flex items-center justify-center text-accent group-hover:bg-accent group-hover:text-white transition-colors duration-500">
-        <div className="w-5 h-5 border-2 border-current rounded-sm" />
+        {Icon ? <Icon size={20} /> : <div className="w-5 h-5 border-2 border-current rounded-sm" />}
       </div>
       <div className="space-y-3">
         <h3 className="font-sans font-bold text-2xl text-ink tracking-tight">{title}</h3>

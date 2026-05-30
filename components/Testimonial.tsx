@@ -5,7 +5,7 @@ import { useReducedMotion } from "framer-motion";
 import Image from "next/image";
 
 interface TestimonialData {
-  id: string;
+  id?: string;
   name: string;
   title: string;
   quote: string;

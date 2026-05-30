@@ -36,7 +36,7 @@ export function Footer({ email, socials }: FooterProps) {
         
         {/* Heading */}
         <h2 className="font-sans font-semibold text-2xl md:text-3xl tracking-tight text-black/80 mb-10">
-          Let's have coffee?
+          Let&apos;s have coffee?
         </h2>
 
         {/* Message Card */}
