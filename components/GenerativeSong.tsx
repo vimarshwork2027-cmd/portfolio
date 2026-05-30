@@ -251,7 +251,7 @@ export function GenerativeSong() {
 
   return (
     // Shifted right slightly (left-24) to avoid overlapping the bolt button from the screenshot
-    <div className="fixed bottom-6 left-24 z-50 hidden md:flex items-center gap-3">
+    <div className="fixed bottom-6 left-8 z-50 hidden md:flex items-center gap-3">
       <div className="relative group">
         <motion.button 
           onClick={togglePlay}

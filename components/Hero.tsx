@@ -160,7 +160,7 @@ export function Hero({
           className="flex flex-col items-center"
         >
           {/* Greeting */}
-          <div className="flex items-center gap-3 mb-2">
+          <div className="flex items-center gap-3 mb-1 md:mb-6">
             <motion.span 
               className="text-3xl md:text-4xl inline-block origin-[70%_70%]"
               animate={greeting.emoji === "👋" ? { rotate: [0, 14, -8, 14, -4, 10, 0, 0] } : {}}
@@ -188,7 +188,7 @@ export function Hero({
 
           {/* Main Titles (The Negotiation) */}
           <h1 
-            className={`flex flex-col items-center gap-0 mb-3 cursor-default select-none min-h-[90px] md:min-h-[110px] justify-center ${liveData.temperature >= 40 && !isNight ? 'heat-shimmer-text' : ''}`}
+            className={`flex flex-col items-center gap-0 mb-2 md:mb-8 cursor-default select-none min-h-[60px] md:min-h-[110px] justify-center ${liveData.temperature >= 40 && !isNight ? 'heat-shimmer-text' : ''}`}
             onMouseEnter={handleHeadlineEnter}
             onMouseLeave={handleHeadlineLeave}
             onTouchStart={handleHeadlineEnter}

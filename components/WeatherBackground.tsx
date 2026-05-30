@@ -130,7 +130,7 @@ export function WeatherBackground({ data }: { data: LiveData }) {
       )}
 
       {/* Tiny Live Data Readout */}
-      <div className="absolute top-8 right-8 text-[11px] font-mono tracking-widest z-10 flex flex-col items-end gap-1 text-black/60">
+      <div className="absolute top-8 right-8 text-[11px] font-mono tracking-widest z-10 hidden md:flex flex-col items-end gap-1 text-black/60">
         <span className="text-black/90 font-medium">AHMEDABAD LIVE</span>
         
         <span className="flex items-center gap-1.5">

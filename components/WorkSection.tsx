@@ -113,9 +113,10 @@ export function WorkSection({
           <h2 className="font-sans font-medium text-4xl md:text-5xl tracking-[-0.05em] text-ink mb-12">
             Selected Work<span className="font-serif text-gradient-hero ml-1">.</span>
           </h2>
-          <p className="text-ink font-handwriting text-[24px] mb-6 tracking-normal flex items-center gap-2">
-            Jump to a case study <span className="text-ink-ghost ml-1">(I know you are in a hurry)</span>
-            <ArrowDown className="w-5 h-5 text-ink-ghost animate-bounce" />
+          <p className="text-ink font-handwriting text-[20px] md:text-[24px] mb-6 tracking-normal flex flex-wrap items-center gap-x-2 gap-y-1">
+            <span>Jump to a case study</span>
+            <span className="text-ink-ghost">(I know you are in a hurry)</span>
+            <ArrowDown className="w-5 h-5 text-ink-ghost animate-bounce inline-block" />
           </p>
         </div>
 
