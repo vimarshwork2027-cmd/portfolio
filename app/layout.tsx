@@ -4,6 +4,8 @@ import "./globals.css";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
 import { BackgroundAscii } from "@/components/BackgroundAscii";
+import { GenerativeSong } from "@/components/GenerativeSong";
+import { LiveStatus } from "@/components/LiveStatus";
 import { site } from "@/lib/site";
 
 const manrope = Manrope({
@@ -60,6 +62,8 @@ export default function RootLayout({
           email={site.email} 
           socials={site.socials} 
         />
+        <GenerativeSong />
+        <LiveStatus />
       </body>
     </html>
   );

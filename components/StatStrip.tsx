@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { useReducedMotion } from "framer-motion";
+import { useMemo } from "react";
 
 interface StatItemProps {
   label: string;
@@ -38,7 +39,16 @@ function StatItem({ label, value, unit, description, plusColor }: StatItemProps)
   );
 }
 
-export function StatStrip({ stats = [] }: { stats?: any[] }) {
+export interface StatData {
+  label: string;
+  value: string;
+  unit?: string;
+  description?: string;
+  source?: string;
+  plusColor?: boolean;
+}
+
+export function StatStrip({ stats = [] }: { stats?: StatData[] }) {
   const shouldReduceMotion = useReducedMotion();
 
   const containerVariants = {
@@ -62,38 +72,40 @@ export function StatStrip({ stats = [] }: { stats?: any[] }) {
   };
 
   // Resolve DB mapping (Source -> Description)
-  const displayStats = stats && stats.length > 0 ? stats.map(s => ({
-    label: s.label,
-    value: s.value,
-    unit: s.unit,
-    description: s.source || s.description || "",
-    plusColor: s.plusColor || s.value?.startsWith("+")
-  })) : [
-    {
-      label: "ROLE",
-      value: "Product Designer",
-      description: "Available for new opportunities",
-    },
-    {
-      label: "USERS",
-      value: "20",
-      unit: "M",
-      description: "Reach across scale products",
-    },
-    {
-      label: "CITIES",
-      value: "40,000",
-      unit: "+",
-      description: "Global product footprint",
-    },
-    {
-      label: "IMPACT",
-      value: "+26",
-      unit: "%",
-      description: "Average conversion lift",
-      plusColor: true,
-    }
-  ];
+  const displayStats = useMemo(() => {
+    return stats && stats.length > 0 ? stats.map(s => ({
+      label: s.label,
+      value: s.value,
+      unit: s.unit,
+      description: s.source || s.description || "",
+      plusColor: s.plusColor || s.value?.startsWith("+")
+    })) : [
+      {
+        label: "ROLE",
+        value: "Product Designer",
+        description: "Available for new opportunities",
+      },
+      {
+        label: "USERS",
+        value: "20",
+        unit: "M",
+        description: "Reach across scale products",
+      },
+      {
+        label: "CITIES",
+        value: "40,000",
+        unit: "+",
+        description: "Global product footprint",
+      },
+      {
+        label: "IMPACT",
+        value: "+26",
+        unit: "%",
+        description: "Average conversion lift",
+        plusColor: true,
+      }
+    ];
+  }, [stats]);
 
   return (
     <section className="w-full max-w-[1080px] mx-auto py-16 md:py-24 border-t border-[#E5E5EA] px-6">

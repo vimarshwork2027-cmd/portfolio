@@ -38,9 +38,9 @@ export const site = {
   experience: [
     {
       company: "Avetria AI",
-      role: "Freelance",
+      role: "Freelance Product Designer",
       duration: "April 2026 - Present",
-      logo: "/images/logos/avetria_3d_logo.png",
+      logo: "/images/logos/avetriaai.png",
       projects: [
         {
           id: "avetria-ai-growth",
@@ -52,7 +52,7 @@ export const site = {
           date: "April 2026",
           category: "AI / Growth",
           tools: "Claude, Figma, Next.js",
-          status: "coming-soon"
+          status: "nda"
         }
       ]
     },
@@ -69,10 +69,10 @@ export const site = {
           description: "A complete visual and structural overhaul of the AllEvents mobile experience.",
           heroImageUrl: "/images/case-studies/app-revamp/AppRevamp.png",
           bgColor: "#1A1A1A",
-          date: "Mar 2026",
+          date: "Feb 2026",
           category: "System Design",
           tools: "Figma",
-          status: "published"
+          status: "coming-soon"
         },
         {
           id: "things-to-do",
@@ -83,7 +83,8 @@ export const site = {
           bgColor: "#F1F0FF",
           date: "Feb 2026",
           category: "Product Design",
-          tools: "Figma"
+          tools: "Figma",
+          status: "coming-soon"
         },
         {
           id: "discovery-maps",
@@ -94,7 +95,8 @@ export const site = {
           bgColor: "#D9D9FB",
           date: "Jan 2026",
           category: "Spatial UI",
-          tools: "Figma"
+          tools: "Figma",
+          status: "coming-soon"
         },
         {
           id: "viral-contest",
@@ -114,7 +116,7 @@ export const site = {
       company: "Glint",
       role: "Co-founder",
       duration: "Jan 2024 - June 2025",
-      logo: "/images/logos/glint_3d_logo.png",
+      logo: "/images/logos/glintlogo.png",
       projects: [
         {
           id: "dating-app",
@@ -126,7 +128,7 @@ export const site = {
           date: "June 2025",
           category: "Social",
           tools: "SwiftUI, Figma",
-          status: "published",
+          status: "nda",
           buttonLabel: "View Project"
         },
         {
@@ -139,7 +141,7 @@ export const site = {
           date: "May 2025",
           category: "Experimental",
           tools: "Framer, Figma",
-          status: "published",
+          status: "coming-soon",
           buttonLabel: "View Project"
         },
         {
@@ -152,7 +154,7 @@ export const site = {
           date: "Mar 2025",
           category: "Web Design",
           tools: "Figma, Webflow",
-          status: "published",
+          status: "coming-soon",
           buttonLabel: "View Project"
         }
       ]
@@ -161,7 +163,7 @@ export const site = {
 
   testimonials: [
     {
-      quote: "Vimarsh consistently demonstrated a high level of creativity, ownership, and professionalism. He played a significant role in enhancing our product design initiatives, contributing effectively to user experience improvements, interface design, and overall product aesthetics. His work reflected a strong understanding of design principles, user-centric thinking, and business alignment.",
+      quote: "Vimarsh brought creativity, ownership, and professionalism — his work reflected a strong understanding of design principles, user-centric thinking, and business alignment.",
       name: "Amit Panchal",
       title: "CEO at AllEvents",
       photoUrl: "/images/testimonials/amitpanchal.jpeg"
@@ -171,6 +173,12 @@ export const site = {
       name: "Achyuth Yarramsetti",
       title: "Lead Product Designer, AllEvents",
       photoUrl: "/images/testimonials/achyuth.png"
+    },
+    {
+      quote: "He brought a strong design sensibility and attention to detail that resulted in a website we're genuinely proud of. The visuals are polished, cohesive, and a true reflection of our brand.",
+      name: "Deepak Sharma",
+      title: "Director, TTR Edge Imaging",
+      photoUrl: "/images/testimonials/deepaksharma.jpeg"
     },
     {
       quote: "I've built a lot of interfaces, but Vimarsh's designs stood out for how developer-friendly they were. Clean layouts, consistent components, and a clear visual logic that translated seamlessly from design to code.",
@@ -183,12 +191,6 @@ export const site = {
       name: "Jaiman Soni",
       title: "Co-founder, Glint",
       photoUrl: "/images/testimonials/jaimansoni.png"
-    },
-    {
-      quote: "Vimarsh brought a strong design sensibility and attention to detail that resulted in a website we're genuinely proud of. The visuals are polished, cohesive, and a true reflection of our brand.",
-      name: "Deepak Sharma",
-      title: "Director, TTR Edge Imaging",
-      photoUrl: "/images/testimonials/deepaksharma.jpeg"
     }
   ],
 
@@ -215,7 +217,7 @@ export const site = {
       mediaUrl: "/images/experiments/polaroid.mp4", 
       gradientConfig: "from-[#64C8C6] to-[#6049E7]",
       tools: "NEXT.JS",
-      hoverNote: "built this for a sucker for polariods"
+      hoverNote: "made this for all the polariod lovers"
     },
     { 
       id: "exp-4", 
@@ -232,6 +234,14 @@ export const site = {
       gradientConfig: "from-[#FA709A] to-[#FEE140]",
       tools: "NEXT.JS, CLAUDE CODE",
       hoverNote: "I built this so you don’t browse on Headout you just get a plan."
+    },
+    { 
+      id: "exp-6", 
+      title: "District Collectables", 
+      mediaUrl: "/images/experiments/districtcollectables.GIF", 
+      gradientConfig: "from-[#667eea] to-[#764ba2]",
+      tools: "NEXT.JS",
+      hoverNote: "Unlock rewards with Card Collectibles"
     }
   ],
 
@@ -270,10 +280,9 @@ export const site = {
   about: {
     heading: "About",
     body: [
-      "I'm Vimarsh — a product designer based in Ahmedabad. I currently lead design for the Things to Do vertical at AllEvents, a global event discovery platform serving 20M+ users across 40,000+ cities.",
-      "I design for measurable outcomes — retention loops, viral mechanics, and conversion funnels — not just screens. The work I'm proudest of isn't the prettiest; it's the stuff that moved a number.",
-      "Before AllEvents, I ran a freelance practice (Glint) working with B2B and consumer startups, and interned at Zealous System. Engineering undergrad from Silver Oak College of Technology, but I've been making things on screens since I was 16.",
-      "Outside of work, I experiment with AI-assisted design tools (Cursor, Figma Make, Claude Code), write on Medium, and build small things for the fun of it.",
+      "I got into design while trying to build things on the internet. Started with code, but somewhere between understanding people and figuring out what makes products actually click — I got obsessed.",
+      "Not just how things look. How they make people feel.",
+      "Today I work across design and AI-assisted building, turning ideas into experiences as fast as possible. Outside work I'm into cricket, F1, photography, and traveling — anything that carries energy and movement. That same obsession with observing the world is what made me fall in love with design in the first place."
     ],
   },
 };

@@ -16,6 +16,8 @@ export function CaseStudyCard({
   variant?: "default" | "small";
 }) {
   const isComingSoon = caseStudy?.status === "coming-soon";
+  const isNDA = caseStudy?.status === "nda";
+  const isLocked = isComingSoon || isNDA;
   const isSmall = variant === "small";
 
   return (
@@ -27,10 +29,10 @@ export function CaseStudyCard({
       className="w-full h-full"
     >
       <Link
-        href={isComingSoon ? "#" : `/${caseStudy?.slug || ""}`}
+        href={isLocked ? "#" : `/${caseStudy?.slug || ""}`}
         className={cn(
           "group block w-full h-full relative transition-all duration-500",
-          isComingSoon ? "cursor-default" : "cursor-pointer active:scale-[0.98]"
+          isLocked ? "cursor-default" : "cursor-pointer active:scale-[0.98]"
         )}
       >
         {/* Image Container */}
@@ -72,13 +74,15 @@ export function CaseStudyCard({
 
           {/* Action Button */}
           <div className="flex items-center">
-            {isComingSoon ? (
+            {isLocked ? (
               <div className="px-5 py-2.5 bg-black/[0.05] text-ink-ghost rounded-full text-[13px] font-bold flex items-center gap-2">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-                  <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-                </svg>
-                Under NDA
+                {isNDA && (
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                    <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                  </svg>
+                )}
+                {isNDA ? "Under NDA" : "Coming soon"}
               </div>
             ) : (
               <div className="bg-black/[0.05] text-ink px-5 py-2.5 rounded-full text-[13px] font-bold transition-all duration-300 group-hover:bg-black/[0.08] group-hover:scale-[1.05] active:scale-[0.98]">

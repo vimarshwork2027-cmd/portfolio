@@ -114,7 +114,7 @@ function TestimonialCard({ testimonial, index }: TestimonialCardProps) {
         whileHover="hover"
         variants={containerVariants}
         suppressHydrationWarning
-        className="rounded-[32px] md:rounded-[40px] p-8 md:p-10 flex flex-col bg-white border border-black/[0.04] relative overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] cursor-default z-10"
+        className="rounded-[32px] md:rounded-[40px] p-8 md:p-10 flex flex-col bg-bg-subtle border border-rule relative overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] cursor-default z-10"
       >
         {/* Vibrant Gradient Reveal on Hover - ULTRA SUBTLE */}
         <div className={`absolute inset-0 bg-gradient-to-br ${activeGradient} opacity-0 group-hover:opacity-10 transition-opacity duration-700 ease-in-out z-0`} />
@@ -122,18 +122,18 @@ function TestimonialCard({ testimonial, index }: TestimonialCardProps) {
         {/* Top Header: Avatar & Waveform */}
         <div className="flex items-center justify-between relative z-10">
           {testimonial.photoUrl ? (
-            <div className="w-12 h-12 md:w-14 md:h-14 rounded-[12px] md:rounded-[14px] overflow-hidden relative grayscale mix-blend-luminosity opacity-100 border-[0.5px] border-black/10 transition-all duration-700 group-hover:grayscale-0 group-hover:mix-blend-normal group-hover:scale-105 group-hover:border-black/5">
+            <div className="w-14 h-14 md:w-16 md:h-16 rounded-[16px] md:rounded-[20px] overflow-hidden relative border border-black/10 shadow-sm transition-all duration-700 group-hover:scale-105 group-hover:border-black/5 group-hover:shadow-md">
               <Image 
                 src={testimonial.photoUrl} 
                 alt={name} 
                 fill
                 className="object-cover transition-transform duration-700"
-                sizes="60px"
+                sizes="64px"
               />
             </div>
           ) : (
-            <div className="w-12 h-12 md:w-14 md:h-14 rounded-[12px] md:rounded-[14px] bg-black/5 border-[0.5px] border-black/5 flex items-center justify-center backdrop-blur-sm group-hover:bg-white/40 transition-all duration-700">
-              <span className="text-[13px] md:text-[14px] font-bold text-black/30 group-hover:text-black/60 tracking-tight transition-colors duration-700">{initials}</span>
+            <div className="w-14 h-14 md:w-16 md:h-16 rounded-[16px] md:rounded-[20px] bg-black/5 border border-black/10 shadow-sm flex items-center justify-center backdrop-blur-sm group-hover:bg-white/40 transition-all duration-700">
+              <span className="text-[14px] md:text-[16px] font-bold text-black/40 group-hover:text-black/60 tracking-tight transition-colors duration-700">{initials}</span>
             </div>
           )}
           
@@ -145,22 +145,24 @@ function TestimonialCard({ testimonial, index }: TestimonialCardProps) {
 
         {/* Main Quote & Attribution */}
         <div className="mt-5 md:mt-7 relative z-10">
-          <div className="font-sans text-[18px] md:text-[22px] leading-[1.4] tracking-tight font-bold flex flex-wrap gap-x-[0.25em] text-black/45 group-hover:text-black/[0.07] transition-colors duration-300">
-            <motion.span variants={wordVariants} className="inline-block">&ldquo;</motion.span>
-            {words.map((word, i) => (
-              <motion.span
-                key={i}
-                variants={wordVariants}
-                className="inline-block text-inherit"
-              >
-                {word}
-              </motion.span>
-            ))}
-            <motion.span variants={wordVariants} className="inline-block">&rdquo;</motion.span>
+          <div className="font-sans text-[18px] md:text-[22px] leading-[1.4] tracking-tight font-medium flex flex-wrap gap-x-[0.25em] text-black/45 group-hover:text-black/[0.07] transition-colors duration-300">
+            {words.map((word, i) => {
+              const isFirst = i === 0;
+              const isLast = i === words.length - 1;
+              return (
+                <motion.span
+                  key={i}
+                  variants={wordVariants}
+                  className="inline-block text-inherit"
+                >
+                  {isFirst ? "“" : ""}{word}{isLast ? "”" : ""}
+                </motion.span>
+              );
+            })}
           </div>
           <div className="mt-4 md:mt-6 border-t border-black/5 pt-4 transition-colors duration-700">
             <p className="font-sans font-medium text-[#2511CC] text-[15px] md:text-[16px] tracking-tight transition-colors duration-700">
-              With {name}.
+              {name}
             </p>
             <p className="text-black/40 font-medium text-[13px] md:text-[14px] mt-1 tracking-tight transition-colors duration-700">
               {title}
@@ -182,21 +184,34 @@ export function Testimonial({
     <section id="testimonials" className="container-content py-24 md:py-32 border-t border-rule mt-12">
       {/* Section Header */}
       <div className="max-w-6xl mx-auto mb-12 md:mb-16">
-        <div className="font-serif italic text-[#2511CC] text-[17px] md:text-[18px] mb-4 tracking-tight">Proof of Work</div>
-        <h2 className="font-sans font-medium text-3xl md:text-4xl tracking-[-0.05em] text-black">
-          Testimonials<span className="font-serif text-gradient-hero ml-1">.</span>
+        <div className="font-serif italic text-accent text-[17px] md:text-[18px] mb-4 tracking-tight">Proof of Work</div>
+        <h2 className="font-sans font-medium text-3xl md:text-4xl tracking-[-0.05em] text-ink">
+          What people actually say<span className="font-serif text-gradient-hero ml-1">.</span>
         </h2>
       </div>
 
-      {/* CSS Columns Masonry Grid */}
-      <div className="columns-1 md:columns-2 gap-6 w-full max-w-6xl mx-auto">
-        {(testimonials || []).map((t, i) => (
-          <TestimonialCard 
-            key={t.id || i} 
-            testimonial={t} 
-            index={i} 
-          />
-        ))}
+      {/* Deterministic Masonry Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-6xl mx-auto items-start">
+        {/* Left Column */}
+        <div className="flex flex-col gap-6">
+          {(testimonials || []).filter((_, i) => i % 2 === 0).map((t, i) => (
+            <TestimonialCard 
+              key={t.id || i} 
+              testimonial={t} 
+              index={i * 2} 
+            />
+          ))}
+        </div>
+        {/* Right Column */}
+        <div className="flex flex-col gap-6">
+          {(testimonials || []).filter((_, i) => i % 2 !== 0).map((t, i) => (
+            <TestimonialCard 
+              key={t.id || i} 
+              testimonial={t} 
+              index={i * 2 + 1} 
+            />
+          ))}
+        </div>
       </div>
     </section>
   );

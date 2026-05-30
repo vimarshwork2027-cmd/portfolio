@@ -4,6 +4,7 @@ import { WorkSection } from "@/components/WorkSection";
 import { Testimonial } from "@/components/Testimonial";
 import { AboutTeaser } from "@/components/AboutTeaser";
 import { DesignExperiments } from "@/components/DesignExperiments";
+import { PhotographySection } from "@/components/PhotographySection";
 
 export default function Home() {
   const profileData = site;
@@ -31,14 +32,18 @@ export default function Home() {
 
       <DesignExperiments experiments={experimentData} />
 
-      <Testimonial
-        testimonials={testimonialData}
-      />
+
+
+      <PhotographySection />
 
       <AboutTeaser
         aboutCopy={profileData.about.body.join(" ")}
         buckets={buckets}
         standaloneItems={standaloneItems}
+      />
+
+      <Testimonial
+        testimonials={testimonialData}
       />
     </main>
   );

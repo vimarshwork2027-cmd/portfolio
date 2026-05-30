@@ -97,16 +97,21 @@ export function WorkSection({
 }: { 
   experience?: any[] 
 }) {
-  const featuredProject = experience.flatMap(exp => exp.projects).find(p => p.isFeatured);
+  const allProjects = experience.flatMap(exp => 
+    (exp.projects || []).map((p: any) => ({ ...p, company: exp.company }))
+  );
+  
+  const featuredProject = allProjects.find(p => p.isFeatured);
+  const otherProjects = allProjects.filter(p => !p.isFeatured);
 
   return (
     <div className="bg-bg">
       <section id="work" className="py-24 md:py-32 scroll-mt-20 overflow-x-hidden px-6 md:px-12 lg:px-24">
-        {/* Header Section - Contained */}
-        <div className="max-w-[1200px] mx-auto mb-12">
+        {/* Header Section */}
+        <div className="max-w-[1200px] mx-auto mb-16">
           <div className="font-serif italic text-[#2511CC] text-[17px] md:text-[18px] mb-4 tracking-tight">Case Studies</div>
-          <h2 className="font-sans font-medium text-3xl md:text-4xl tracking-[-0.05em] text-ink mb-12">
-            Stuff I built<span className="font-serif text-gradient-hero ml-1">.</span>
+          <h2 className="font-sans font-medium text-4xl md:text-5xl tracking-[-0.05em] text-ink mb-12">
+            Selected Work<span className="font-serif text-gradient-hero ml-1">.</span>
           </h2>
           <p className="text-ink font-handwriting text-[24px] mb-6 tracking-normal flex items-center gap-2">
             Jump to a case study <span className="text-ink-ghost ml-1">(I know you are in a hurry)</span>
@@ -114,61 +119,60 @@ export function WorkSection({
           </p>
         </div>
 
-        {/* Featured Project - Contained */}
+        {/* Featured Project */}
         {featuredProject && (
-          <div className="max-w-[1200px] mx-auto mb-32">
+          <div className="max-w-[1200px] mx-auto mb-20 md:mb-32">
             <FeaturedCaseStudy project={featuredProject} />
           </div>
         )}
 
-        {/* Experience Groups */}
-        <div className="flex flex-col gap-24 md:gap-32">
-          {(experience || []).map((exp, expIdx) => (
-            <div key={exp.company} className="flex flex-col">
-              {/* Company Header - Contained */}
-              <div className="max-w-[1200px] mx-auto w-full mb-10">
-                <div className="flex items-center gap-1">
-                  <div className="w-16 h-16 md:w-20 md:h-20 flex-shrink-0 flex items-center justify-center overflow-hidden pointer-events-none">
-                    {exp.logo ? (
-                      <img src={exp.logo} alt={exp.company} className="w-full h-full object-contain" />
-                    ) : (
-                      <div className="w-full h-full bg-accent/5 flex items-center justify-center text-accent font-bold text-lg">
-                        {exp.company[0]}
-                      </div>
-                    )}
-                  </div>
-                  <div className="flex flex-col">
-                    <h3 className="font-sans font-bold text-xl md:text-2xl text-ink leading-none mb-1">
-                      {exp.company}
-                    </h3>
-                    <div className="text-ink-ghost text-sm md:text-base font-medium">
-                      {exp.role} &middot; <span className="opacity-70">{exp.duration}</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Projects Scroll Container - Full Width Bleed */}
-              {/* We need to offset the parent's padding for the scroll area */}
-              <div className="w-screen relative left-1/2 right-1/2 -ml-[50vw] overflow-x-auto scrollbar-hide snap-x snap-proximity scroll-smooth">
-                <div className="flex gap-6 md:gap-8 pb-8 px-6 md:px-12 lg:px-[calc((100vw-1200px)/2+96px)] min-w-full pr-[calc((100vw-1200px)/2+128px)]">
-                  {exp.projects.filter((p: any) => !p.isFeatured).map((project: any, i: number) => (
-                    <div 
-                      key={project.id || i} 
-                      className="w-[280px] md:w-[400px] flex-shrink-0 snap-start"
-                    >
-                      <CaseStudyCard 
-                        caseStudy={project} 
-                        index={i} 
-                        variant="small"
-                      />
-                    </div>
-                  ))}
-                </div>
-              </div>
+        {/* All Other Projects in a clean grid */}
+        <div className="max-w-[1200px] mx-auto mb-32 grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+          {otherProjects.map((project, i) => (
+            <div key={project.id || i} className="w-full">
+              <CaseStudyCard 
+                caseStudy={project} 
+                index={i} 
+                variant="small"
+              />
             </div>
           ))}
         </div>
+
+        {/* Timeline Footnote */}
+        {experience.length > 0 && (
+          <div className="max-w-[1200px] mx-auto pt-16 border-t border-black/[0.06]">
+            <div className="font-serif italic text-[#2511CC] text-[17px] md:text-[18px] mb-8 tracking-tight">Where this work happened</div>
+            <div className="flex flex-col">
+              {experience.map((exp) => (
+                <div key={exp.company} className="flex flex-col md:flex-row md:items-center justify-between gap-2 md:gap-4 py-6 border-b border-black/[0.04] last:border-0 group hover:bg-black/[0.02] px-4 -mx-4 rounded-2xl transition-colors">
+                  <div className="flex items-center gap-6">
+                    <div className="w-12 h-12 flex-shrink-0 flex items-center justify-center overflow-hidden">
+                      {exp.logo ? (
+                        <img src={exp.logo} alt={exp.company} className="w-full h-full object-contain mix-blend-multiply opacity-80 group-hover:opacity-100 transition-opacity" />
+                      ) : (
+                        <div className="w-full h-full bg-black/5 rounded-full flex items-center justify-center text-ink-dim font-bold text-lg">
+                          {exp.company[0]}
+                        </div>
+                      )}
+                    </div>
+                    <div className="flex flex-col">
+                      <h4 className="font-sans font-bold text-xl text-ink leading-none mb-1.5">
+                        {exp.company}
+                      </h4>
+                      <div className="text-ink-ghost text-[15px] font-medium">
+                        {exp.role}
+                      </div>
+                    </div>
+                  </div>
+                  <div className="font-sans text-[14px] md:text-[15px] font-medium text-ink-ghost tracking-[-0.01em] md:text-right mt-2 md:mt-0 pl-[72px] md:pl-0">
+                    {exp.duration}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
       </section>
     </div>
   );

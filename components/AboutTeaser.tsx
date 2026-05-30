@@ -35,7 +35,7 @@ export function AboutTeaser({
   };
 
   return (
-    <section className="container-content py-24 md:py-32 border-t border-rule bg-bg-subtle/50">
+    <section id="about" className="container-content py-24 md:py-32">
       <div className="flex flex-col lg:flex-row gap-16 lg:gap-32 items-start mb-16 md:mb-24">
         <div className="lg:w-5/12">
           <motion.div
@@ -46,7 +46,7 @@ export function AboutTeaser({
           >
             <div className="font-serif italic text-[#2511CC] text-[17px] md:text-[18px] mb-6 tracking-tight">About</div>
             <h2 className="font-sans font-medium text-display-md tracking-[-0.04em] text-ink leading-[1.1]">
-              Designer obsessed with what <span className="font-serif text-gradient-hero">moves the number.</span>
+              Designer. Builder. Probably thinking about <span className="font-serif text-gradient-hero">F1 right now.</span>
             </h2>
           </motion.div>
         </div>
@@ -84,13 +84,7 @@ export function AboutTeaser({
               transition={{ duration: 0.6, delay: 0.3 }}
               className="flex flex-wrap gap-10 pt-2"
             >
-              <Link 
-                href="/about" 
-                className="flex items-center gap-2 text-ink-dim font-bold text-[14px] tracking-tight transition-all hover:text-ink group"
-              >
-                Read my full story
-                <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
-              </Link>
+            {/* Link removed as About is now a home page section */}
 
             </motion.div>
           </motion.div>
