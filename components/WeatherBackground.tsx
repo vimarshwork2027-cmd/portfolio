@@ -7,6 +7,15 @@ import { LiveData } from "../hooks/useAhmedabadLive";
 export function WeatherBackground({ data }: { data: LiveData }) {
   const { temperature, humidity, weatherCode, aqi, hour, status, feelsLike, windSpeed, sunset } = data;
 
+  const [rotatingIndex, setRotatingIndex] = useState(0);
+  
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setRotatingIndex(prev => (prev + 1) % 5);
+    }, 30000); // Rotate exactly every 30 seconds as requested
+    return () => clearInterval(interval);
+  }, []);
+
   if (status === "loading") {
     return <div className="absolute inset-0 z-0 bg-slate-50 transition-colors duration-1000" />;
   }
@@ -46,16 +55,6 @@ export function WeatherBackground({ data }: { data: LiveData }) {
   if (aqi >= 100 && aqi < 150) aqiColor = "bg-yellow-400 shadow-[0_0_8px_rgba(250,204,21,0.5)]";
   else if (aqi >= 150 && aqi < 200) aqiColor = "bg-orange-500 shadow-[0_0_8px_rgba(249,115,22,0.5)]";
   else if (aqi >= 200) aqiColor = "bg-red-500 shadow-[0_0_8px_rgba(239,68,68,0.5)]";
-
-  // Rotating telemetry
-  const [rotatingIndex, setRotatingIndex] = useState(0);
-  
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setRotatingIndex(prev => (prev + 1) % 5);
-    }, 30000); // Rotate exactly every 30 seconds as requested
-    return () => clearInterval(interval);
-  }, []);
 
   const rotatingData = [
     new Date().toLocaleTimeString("en-US", { timeZone: "Asia/Kolkata", hour12: true, hour: '2-digit', minute:'2-digit' }),

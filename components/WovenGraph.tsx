@@ -27,7 +27,7 @@ export const WovenGraph = () => {
       pointerY.set(15);
     }, 500);
     return () => clearTimeout(timer);
-  }, []);
+  }, [pointerX, pointerY, progressPathLength]);
 
   // Super-Wide growth path data - Full 220 Width
   const pathData = "M 0 32 C 30 32, 60 28, 90 24 C 130 20, 160 18, 200 16 C 210 15, 215 15, 220 15";
