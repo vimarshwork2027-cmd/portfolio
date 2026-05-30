@@ -112,7 +112,7 @@ export function Footer({ email, socials }: FooterProps) {
           <div className="flex justify-between items-center py-6 border-b border-black/[0.06]">
             <span className="text-[14px] md:text-[15px] text-black/40 font-medium">Resume</span>
             <div className="flex items-center gap-2 text-[14px] md:text-[15px] text-black/80 font-medium">
-              <Link href="https://docs.google.com/document/d/1J167hM3A1p8GT2aEV1DhcWhMCV_4H_8Asuujcg3SOWk/edit?usp=sharing" target="_blank" className="hover:text-black transition-colors underline decoration-black/10 underline-offset-4 flex items-center gap-1">
+              <Link href="/images/about/Vimarsh's_Resume.pdf" target="_blank" className="hover:text-black transition-colors underline decoration-black/10 underline-offset-4 flex items-center gap-1">
                 View PDF <span className="text-[12px]">↗</span>
               </Link>
             </div>

@@ -18,11 +18,11 @@ export function Hero({
   const liveData = useAhmedabadLive();
   const easing = [0.22, 1, 0.36, 1];
 
-  const isNight = liveData.hour >= 19 || liveData.hour < 6;
+  const isNight = false; // Night mode removed — always light theme
   
   // Dot grid scales based on humidity (denser when humid)
   const dotScale = Math.max(16, 48 - (liveData.humidity / 100) * 32); 
-  const dotColor = isNight ? '#334155' : '#94a3b8';
+  const dotColor = '#94a3b8';
 
   // The Argumentative Headline
   const ARGUMENTS = [

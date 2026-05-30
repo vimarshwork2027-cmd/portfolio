@@ -17,6 +17,8 @@ export function LiveStatus() {
       setCurrentStatus("drinking coffee, staring at a wall");
     } else if (hour >= 13 && hour < 15) {
       setCurrentStatus("probably eating lunch");
+    } else if (hour >= 17 && hour < 19) {
+      setCurrentStatus("wrapping up the day's work");
     } else if (hour >= 20 && hour < 22) {
       setCurrentStatus("probably eating dinner");
     } else if (hour % 3 === 0) {
