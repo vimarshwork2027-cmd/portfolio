@@ -85,8 +85,11 @@ export function CaseStudyCard({
                 {isNDA ? "Under NDA" : "Coming soon"}
               </div>
             ) : (
-              <div className="bg-black/[0.05] text-ink px-5 py-2.5 rounded-full text-[13px] font-bold transition-all duration-300 group-hover:bg-black/[0.08] group-hover:scale-[1.05] active:scale-[0.98]">
+              <div className="bg-black text-white px-5 py-2.5 rounded-full text-[13px] font-semibold flex items-center gap-2.5 transition-all duration-500 group-hover:gap-3.5 group-hover:shadow-[0_4px_20px_rgba(0,0,0,0.15)] active:scale-[0.97]">
                 {caseStudy.buttonLabel || "Read case study"}
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" className="transition-transform duration-500 group-hover:translate-x-0.5">
+                  <path d="M3 8H13M13 8L8.5 3.5M13 8L8.5 12.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
               </div>
             )}
           </div>

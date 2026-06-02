@@ -102,7 +102,7 @@ export function PhotographySection() {
   // Use scroll progress to create a "sticky" background transition
   const bgOpacity = useTransform(
     scrollYProgress,
-    [0.1, 0.25, 0.75, 0.9],
+    [0.05, 0.18, 0.75, 0.92],
     [0, 1, 1, 0]
   );
 
@@ -133,13 +133,16 @@ export function PhotographySection() {
     <section 
       ref={containerRef}
       id="photography" 
-      className="relative min-h-[120vh] py-32 md:py-48 overflow-visible"
+      className="relative min-h-[120vh] py-32 md:py-48 overflow-visible mt-24"
     >
       {/* Cinematic Background Layer */}
       <motion.div 
         style={{ opacity: bgOpacity }}
-        className="fixed inset-0 bg-black pointer-events-none z-0"
-      />
+        className="fixed inset-0 pointer-events-none z-0"
+      >
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/70 to-black" style={{ height: '15%' }} />
+        <div className="absolute inset-0 bg-black" style={{ top: '15%' }} />
+      </motion.div>
 
       <div className="container-content relative z-10">
         {/* Section Header */}
@@ -248,7 +251,7 @@ function PhotoCard({ src, index, onClick }: { src: string, index: number, onClic
       }}
       whileHover={{ y: -8 }}
       onClick={onClick}
-      className="break-inside-avoid relative group cursor-zoom-in"
+      className="break-inside-avoid relative group cursor-pointer"
     >
       <div className="relative overflow-hidden rounded-[24px] md:rounded-[32px] bg-black/5 aspect-auto border border-white/5 transition-all duration-500 group-hover:border-white/20 group-hover:shadow-2xl group-hover:shadow-purple-500/10">
         <motion.img 

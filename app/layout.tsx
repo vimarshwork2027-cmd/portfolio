@@ -39,7 +39,8 @@ export const metadata: Metadata = {
   keywords: ["product designer", "growth design", "B2C design", "AllEvents", "Vimarsh Tiwari"],
   authors: [{ name: "Vimarsh Tiwari" }],
   icons: {
-    icon: "/images/profile/profile.png",
+    icon: "/images/about/about.JPG",
+    apple: "/images/about/about.JPG",
   },
 };
 

@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
 import { LiveData } from "../hooks/useAhmedabadLive";
 
-export function WeatherBackground({ data }: { data: LiveData }) {
+export function WeatherBackground({ data, isNight }: { data: LiveData; isNight?: boolean }) {
   const { temperature, humidity, weatherCode, aqi, hour, status, feelsLike, windSpeed, sunset } = data;
 
   const [rotatingIndex, setRotatingIndex] = useState(0);
@@ -28,7 +28,9 @@ export function WeatherBackground({ data }: { data: LiveData }) {
 
   // Time of day base
   let baseGradient = "from-sky-100 to-white";
-  if (hour >= 6 && hour < 9) { // Dawn
+  if (isNight) {
+    baseGradient = "from-[#e8eaf0] via-[#eef0f5] to-[#f0f1f5]";
+  } else if (hour >= 6 && hour < 9) { // Dawn
     baseGradient = "from-rose-100 via-orange-50 to-white";
   } else if (hour >= 17 && hour < 19) { // Dusk
     baseGradient = "from-orange-100 via-indigo-50 to-slate-100";

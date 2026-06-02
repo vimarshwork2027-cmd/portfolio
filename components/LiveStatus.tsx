@@ -30,11 +30,9 @@ export function LiveStatus() {
     }
   }, [hour, status]);
 
-  const isNight = hour >= 19 || hour < 6;
-
   return (
-    <div className={`absolute left-8 top-8 z-50 hidden xl:flex flex-col gap-1.5 text-[11px] font-mono tracking-widest uppercase ${isNight ? 'text-white/40' : 'text-black/40'} transition-colors duration-1000`}>
-      <span className={`font-semibold ${isNight ? 'text-white/60' : 'text-black/60'}`}>Right Now:</span>
+    <div className="absolute left-8 top-8 z-50 hidden xl:flex flex-col gap-1.5 text-[11px] font-mono tracking-widest uppercase text-black/60 transition-colors duration-1000">
+      <span className="font-semibold text-black/80">Right Now:</span>
       <AnimatePresence mode="wait">
         <motion.span 
           key={currentStatus}
@@ -44,7 +42,7 @@ export function LiveStatus() {
           transition={{ duration: 0.5 }}
           className="flex items-center gap-2 whitespace-nowrap"
         >
-          <span className={isNight ? 'text-white/20' : 'text-black/20'}>↳</span> {currentStatus}
+          <span className="text-black/35">↳</span> {currentStatus}
         </motion.span>
       </AnimatePresence>
     </div>

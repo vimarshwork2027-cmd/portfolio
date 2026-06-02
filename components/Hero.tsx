@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useState, useRef, useEffect } from "react";
 import { WeatherBackground } from "./WeatherBackground";
 import { PoppableDotGrid } from "./PoppableDotGrid";
+import { Starfield } from "./Starfield";
 import { useAhmedabadLive } from "../hooks/useAhmedabadLive";
 
 export function Hero({ 
@@ -18,7 +19,7 @@ export function Hero({
   const liveData = useAhmedabadLive();
   const easing = [0.22, 1, 0.36, 1];
 
-  const isNight = false; // Night mode removed — always light theme
+  const isNight = liveData.hour >= 19 || liveData.hour < 6;
   
   // Dot grid scales based on humidity (denser when humid)
   const dotScale = Math.max(16, 48 - (liveData.humidity / 100) * 32); 
@@ -34,7 +35,7 @@ export function Hero({
   const [titleIndex, setTitleIndex] = useState(0);
   
   const SUBTITLES = [
-    "led discovery and growth design for 200K+ users at AllEvents",
+    "led discovery and growth design for 1M users at AllEvents",
     "the kind of designer who asks why before asking how"
   ];
   const [subtitleIndex, setSubtitleIndex] = useState(0);
@@ -103,9 +104,12 @@ export function Hero({
 
   return (
     <section 
-      className={`relative z-10 flex flex-col items-center justify-center min-h-[90vh] pt-32 pb-16 px-6 md:px-12 lg:px-24 overflow-hidden bg-transparent transition-colors duration-1000 ${isNight ? 'text-white' : 'text-ink'}`}
+      className={`relative z-10 flex flex-col items-center justify-center min-h-[90vh] pt-32 pb-16 px-6 md:px-12 lg:px-24 overflow-hidden bg-transparent transition-colors duration-1000 text-ink`}
     >
-      <WeatherBackground data={liveData} />
+      <WeatherBackground data={liveData} isNight={isNight} />
+
+      {/* Starfield for night mode */}
+      <Starfield isNight={isNight} />
 
       {/* Heat shimmer on text via CSS filter if super hot */}
       <style dangerouslySetInnerHTML={{__html: `
@@ -143,7 +147,7 @@ export function Hero({
           transition={{ duration: 0.8, ease: easing }}
           className="mb-10"
         >
-          <div className={`group relative w-32 h-32 md:w-40 md:h-40 rounded-[56px] overflow-hidden border-4 shadow-xl ring-1 ring-black/5 ${isNight ? 'border-slate-800 shadow-black/50' : 'border-white'}`}>
+          <div className="group relative w-32 h-32 md:w-40 md:h-40 rounded-[56px] overflow-hidden border-4 border-white shadow-xl ring-1 ring-black/5">
             <img 
               src={profilePhotoUrl || "/images/about/about.JPG"} 
               alt="Vimarsh Tiwari" 
@@ -160,7 +164,7 @@ export function Hero({
           className="flex flex-col items-center"
         >
           {/* Greeting */}
-          <div className="flex items-center gap-3 mb-1 md:mb-6">
+          <div className="flex items-center gap-3 mb-0 md:mb-2">
             <motion.span 
               className="text-3xl md:text-4xl inline-block origin-[70%_70%]"
               animate={greeting.emoji === "👋" ? { rotate: [0, 14, -8, 14, -4, 10, 0, 0] } : {}}
@@ -174,7 +178,7 @@ export function Hero({
             >
               {greeting.emoji}
             </motion.span>
-            <span className={`text-xl md:text-3xl font-light tracking-[0.02em] flex items-center gap-1.5 ${isNight ? 'text-slate-300' : 'text-[#333333]'}`}>
+            <span className="text-xl md:text-3xl font-light tracking-[0.02em] flex items-center gap-1.5 text-[#333333]">
               {greeting.text} 
               <span 
                 className="relative inline-flex items-center group cursor-pointer"
@@ -188,7 +192,7 @@ export function Hero({
 
           {/* Main Titles (The Negotiation) */}
           <h1 
-            className={`flex flex-col items-center gap-0 mb-2 md:mb-8 cursor-default select-none min-h-[60px] md:min-h-[110px] justify-center ${liveData.temperature >= 40 && !isNight ? 'heat-shimmer-text' : ''}`}
+            className={`flex flex-col items-center gap-0 mb-0 md:mb-2 cursor-default select-none min-h-[60px] md:min-h-[90px] justify-center ${liveData.temperature >= 40 && !isNight ? 'heat-shimmer-text' : ''}`}
             onMouseEnter={handleHeadlineEnter}
             onMouseLeave={handleHeadlineLeave}
             onTouchStart={handleHeadlineEnter}
@@ -201,7 +205,7 @@ export function Hero({
                 animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                 exit={{ opacity: 0, y: -15, filter: "blur(8px)" }}
                 transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                className={`font-bold tracking-tight text-center ${isNight ? 'text-white' : 'text-black'} text-display-xl`}
+                className="font-bold tracking-tight text-center text-black text-display-xl"
               >
                 {ARGUMENTS[titleIndex]}
               </motion.span>
@@ -217,7 +221,7 @@ export function Hero({
                 animate={{ opacity: 1, filter: "blur(0px)", y: 0 }}
                 exit={{ opacity: 0, filter: "blur(4px)", y: -4 }}
                 transition={{ duration: 0.6, ease: "easeInOut" }}
-                className={`text-[17px] md:text-[21px] max-w-[900px] md:whitespace-nowrap leading-relaxed font-medium absolute text-center w-full ${isNight ? 'text-slate-400' : 'text-ink-dim'}`}
+                className="text-[17px] md:text-[21px] max-w-[900px] md:whitespace-nowrap leading-relaxed font-medium absolute text-center w-full text-ink-dim"
               >
                 {SUBTITLES[subtitleIndex]}
               </motion.p>
@@ -234,11 +238,7 @@ export function Hero({
             {["available for work", "open to relocation", "2 yrs exp"].map((pill, i) => (
               <span 
                 key={i} 
-                className={`px-3.5 py-1.5 text-[10px] font-bold tracking-widest uppercase rounded-full border backdrop-blur-md transition-all flex items-center gap-2 cursor-default ${
-                  isNight 
-                    ? 'border-white/10 text-white/70 bg-white/5 hover:bg-white/10 hover:text-white shadow-[0_2px_10px_rgba(0,0,0,0.2)]' 
-                    : 'border-black/[0.06] text-black/60 bg-white/60 hover:bg-white hover:text-black hover:shadow-[0_2px_10px_rgba(0,0,0,0.06)]'
-                }`}
+                className="px-3.5 py-1.5 text-[10px] font-bold tracking-widest uppercase rounded-full border backdrop-blur-md transition-all flex items-center gap-2 cursor-default border-black/[0.06] text-black/60 bg-white/60 hover:bg-white hover:text-black hover:shadow-[0_2px_10px_rgba(0,0,0,0.06)]"
               >
                 {i === 0 && <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_8px_rgba(16,185,129,0.4)]" />}
                 {pill}
