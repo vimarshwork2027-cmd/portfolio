@@ -1,5 +1,7 @@
 "use client";
 
+import Image from "next/image";
+
 import { motion, AnimatePresence } from "framer-motion";
 import { Volume2 } from "lucide-react";
 import Link from "next/link";
@@ -148,10 +150,13 @@ export function Hero({
           className="mb-10"
         >
           <div className="group relative w-32 h-32 md:w-40 md:h-40 rounded-[56px] overflow-hidden border-4 border-white shadow-xl ring-1 ring-black/5">
-            <img 
+            <Image 
               src={profilePhotoUrl || "/images/about/about.JPG"} 
-              alt="Vimarsh Tiwari" 
-              className="w-full h-full object-cover scale-[1.1] group-hover:scale-[1.05] transition-all duration-[2000ms] ease-[cubic-bezier(0.25,1,0.5,1)] object-[center_75%]"
+              alt="Vimarsh Tiwari"
+              fill
+              quality={100}
+              sizes="(max-width: 768px) 128px, 160px"
+              className="object-cover scale-[1.1] group-hover:scale-[1.05] transition-all duration-[2000ms] ease-[cubic-bezier(0.25,1,0.5,1)] object-[center_75%]"
             />
           </div>
         </motion.div>

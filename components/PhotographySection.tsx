@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef, useCallback } from "react";
 import { motion, useInView, AnimatePresence, useScroll, useTransform } from "framer-motion";
+import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 
@@ -216,9 +217,13 @@ export function PhotographySection() {
               className="relative max-w-full max-h-full overflow-hidden rounded-[20px] md:rounded-[32px] shadow-2xl shadow-black"
               onClick={(e) => e.stopPropagation()}
             >
-              <img 
+              <Image 
                 src={selectedImage} 
-                alt="Selected photography" 
+                alt="Selected photography"
+                width={1600}
+                height={1200}
+                quality={100}
+                unoptimized
                 className="w-full h-auto max-h-[85vh] md:max-h-[90vh] object-contain select-none"
               />
             </motion.div>
@@ -254,13 +259,7 @@ function PhotoCard({ src, index, onClick }: { src: string, index: number, onClic
       className="break-inside-avoid relative group cursor-pointer"
     >
       <div className="relative overflow-hidden rounded-[24px] md:rounded-[32px] bg-black/5 aspect-auto border border-white/5 transition-all duration-500 group-hover:border-white/20 group-hover:shadow-2xl group-hover:shadow-purple-500/10">
-        <motion.img 
-          layoutId={src}
-          src={src} 
-          alt={`Photography ${index + 1}`}
-          loading="lazy"
-          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-        />
+        <Image \n          src={src} \n          alt={`Photography ${index + 1}`}\n          width={800}\n          height={1000}\n          quality={100}\n          sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"\n          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"\n        />
         
         {/* Subtle Overlay on Hover */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />

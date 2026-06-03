@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { Home, Briefcase, Sparkles, User, Camera } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -99,7 +100,7 @@ export function Nav({ statusText }: { statusText?: string }) {
                className="overflow-hidden rounded-full shrink-0 flex items-center justify-center bg-black/5 hidden md:flex"
                transition={{ type: "spring", stiffness: 400, damping: 30 }}
             >
-               <img src="/images/about/about.JPG" alt="Vimarsh" className="w-6 h-6 min-w-[24px] object-cover object-[center_90%] scale-[1.5]" />
+               <Image src="/images/about/about.JPG" alt="Vimarsh" width={24} height={24} quality={100} className="min-w-[24px] object-cover object-[center_90%] scale-[1.5]" />
             </motion.div>
             
             <motion.div 

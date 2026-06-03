@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
@@ -44,10 +45,13 @@ export function CaseStudyCard({
           style={{ backgroundColor: caseStudy.bgColor || "#F1EFE8" }}
         >
           {caseStudy.heroImageUrl ? (
-            <img 
+            <Image 
               src={caseStudy.heroImageUrl} 
               alt={caseStudy.title}
-              className="w-full h-full object-cover transition-transform duration-700 ease-out-expo group-hover:scale-110"
+              fill
+              quality={100}
+              sizes="(max-width: 768px) 100vw, 50vw"
+              className="object-cover transition-transform duration-700 ease-out-expo group-hover:scale-110"
             />
           ) : (
             <div className="w-full h-full flex items-center justify-center bg-black/5">

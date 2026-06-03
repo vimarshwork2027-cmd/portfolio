@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowDown, ArrowRight } from "lucide-react";
 import { CaseStudyCard } from "./CaseStudyCard";
@@ -43,10 +44,13 @@ function FeaturedCaseStudy({ project }: { project: any }) {
           style={{ backgroundColor: project.bgColor || "#6049E7" }}
         >
           {project.heroImageUrl ? (
-            <img 
+            <Image 
               src={project.heroImageUrl} 
               alt={project.title}
-              className="w-full h-full object-cover"
+              fill
+              quality={100}
+              sizes="(max-width: 768px) 100vw, 50vw"
+              className="object-cover"
             />
           ) : (
             <div className="w-full h-full flex items-center justify-center text-white/20 font-bold text-3xl">
@@ -148,9 +152,9 @@ export function WorkSection({
               {experience.map((exp) => (
                 <div key={exp.company} className="flex flex-col md:flex-row md:items-center justify-between gap-2 md:gap-4 py-6 border-b border-black/[0.04] last:border-0 group hover:bg-black/[0.02] px-4 -mx-4 rounded-2xl transition-colors">
                   <div className="flex items-center gap-6">
-                    <div className="w-12 h-12 flex-shrink-0 flex items-center justify-center overflow-hidden">
+                    <div className="relative w-12 h-12 flex-shrink-0 flex items-center justify-center overflow-hidden">
                       {exp.logo ? (
-                        <img src={exp.logo} alt={exp.company} className="w-full h-full object-contain mix-blend-multiply opacity-80 group-hover:opacity-100 transition-opacity" />
+                        <Image src={exp.logo} alt={exp.company} fill quality={100} sizes="48px" className="object-contain mix-blend-multiply opacity-80 group-hover:opacity-100 transition-opacity" />
                       ) : (
                         <div className="w-full h-full bg-black/5 rounded-full flex items-center justify-center text-ink-dim font-bold text-lg">
                           {exp.company[0]}

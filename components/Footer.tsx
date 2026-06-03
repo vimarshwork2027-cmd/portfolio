@@ -3,6 +3,7 @@
 import { motion, useInView } from "framer-motion";
 import { Mail } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { useState, useRef, useEffect } from "react";
 
@@ -49,9 +50,9 @@ export function Footer({ email, socials }: FooterProps) {
                 initial={{ opacity: 0, scale: 0.5 }}
                 animate={isBubbleInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.5 }}
                 transition={{ type: "spring", stiffness: 260, damping: 20 }}
-                className="w-10 h-10 rounded-full overflow-hidden flex-shrink-0 mt-1 shadow-[0_2px_8px_rgba(0,0,0,0.08)]"
+                className="relative w-10 h-10 rounded-full overflow-hidden flex-shrink-0 mt-1 shadow-[0_2px_8px_rgba(0,0,0,0.08)]"
               >
-                <img src="/images/about/about.JPG" alt="Vimarsh" className="w-full h-full object-cover" />
+                <Image src="/images/about/about.JPG" alt="Vimarsh" fill quality={100} sizes="40px" className="object-cover" />
               </motion.div>
               
               {isBubbleInView && (

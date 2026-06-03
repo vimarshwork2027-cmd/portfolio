@@ -159,9 +159,9 @@ export function CaseStudyPage({ caseStudy }: { caseStudy: any }) {
           {/* Right Column: Content Area */}
           <main className="w-full">
             <header className="flex items-center gap-3 mb-8 snap-start scroll-mt-40">
-              <div className="w-14 h-14 flex items-center justify-start overflow-hidden">
+              <div className="relative w-14 h-14 flex items-center justify-start overflow-hidden">
                 {caseStudy.logo ? (
-                  <img src={caseStudy.logo} alt={caseStudy.company} className="w-full h-full object-contain" />
+                  <Image src={caseStudy.logo} alt={caseStudy.company} fill quality={100} sizes="56px" className="object-contain" />
                 ) : (
                   <span className={cn(
                     "font-bold text-2xl",
@@ -352,10 +352,13 @@ export function CaseStudyPage({ caseStudy }: { caseStudy: any }) {
                                   }}
                                 >
                                   <div className="aspect-[4/5] overflow-hidden bg-gray-50">
-                                    <img 
+                                    <Image 
                                       src={img} 
                                       alt={`Polaroid visual ${i+1}`}
-                                      className="w-full h-full object-cover"
+                                      fill
+                                      quality={100}
+                                      sizes="(max-width: 768px) 50vw, 25vw"
+                                      className="object-cover"
                                     />
                                   </div>
                                 </div>
@@ -454,9 +457,12 @@ export function CaseStudyPage({ caseStudy }: { caseStudy: any }) {
                                 : cn(section.noRadius ? "rounded-none" : "rounded-[32px] md:rounded-[48px]", "bg-[#F9F9F9] p-6 md:p-10"),
                             section.fullWidth ? "max-w-screen-2xl" : "max-w-3xl"
                           )}>
-                            <img 
+                            <Image 
                               src={section.image} 
                               alt={section.title || "Section visual"}
+                              width={1200}
+                              height={800}
+                              quality={100}
                               className={cn(
                                 "w-full h-auto object-contain",
                                 (section.image.endsWith('.gif') || section.noContainer) 
@@ -478,9 +484,12 @@ export function CaseStudyPage({ caseStudy }: { caseStudy: any }) {
                                 : cn(section.noRadius ? "rounded-none" : "rounded-[32px] md:rounded-[48px]", "bg-[#F9F9F9] p-6 md:p-10"),
                             "max-w-3xl"
                           )}>
-                            <img 
+                            <Image 
                               src={section.image2} 
                               alt={`${section.title} detail 1`}
+                              width={1200}
+                              height={800}
+                              quality={100}
                               className={cn(
                                 "w-full h-auto object-contain mx-auto",
                                 (section.image2.endsWith('.gif') || section.noContainer) 
@@ -501,9 +510,12 @@ export function CaseStudyPage({ caseStudy }: { caseStudy: any }) {
                                 : cn(section.noRadius ? "rounded-none" : "rounded-[32px] md:rounded-[48px]", "bg-[#F9F9F9] p-6 md:p-10"),
                             "max-w-3xl"
                           )}>
-                            <img 
+                            <Image 
                               src={section.image3} 
                               alt={`${section.title} detail 2`}
+                              width={1200}
+                              height={800}
+                              quality={100}
                               className={cn(
                                 "w-full h-auto object-contain mx-auto",
                                 (section.image3.endsWith('.gif') || section.noContainer) 
@@ -600,9 +612,12 @@ export function CaseStudyPage({ caseStudy }: { caseStudy: any }) {
                       ? "bg-transparent p-0" 
                       : "bg-[#F3F3F3] rounded-[48px] p-4 md:p-8"
                   )}>
-                    <img 
+                    <Image 
                       src={caseStudy.heroImageUrl} 
                       alt="Project Mockup"
+                      width={1400}
+                      height={800}
+                      quality={100}
                       className={cn(
                         "w-full h-auto object-cover shadow-2xl",
                         caseStudy.heroImageUrl?.endsWith('.gif') ? "rounded-none" : "rounded-[32px]"

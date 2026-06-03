@@ -4,6 +4,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, ArrowDown, Twitter, Globe, Github } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 import { cn } from "@/lib/utils";
 
 import { site } from "@/lib/site";
@@ -154,7 +155,7 @@ function ExperimentCard({
                 {experiment.mediaUrl.match(/\.(mp4|mov|webm)$|video/i) ? (
                   <video src={experiment.mediaUrl} autoPlay loop muted playsInline className="w-full h-full object-cover" />
                 ) : (
-                  <img src={experiment.mediaUrl} alt={experiment.title} className="w-full h-full object-cover" />
+                  <Image src={experiment.mediaUrl} alt={experiment.title} fill quality={100} sizes="(max-width: 768px) 320px, 450px" className="object-cover" />
                 )}
               </div>
             ) : (
