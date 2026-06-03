@@ -259,7 +259,15 @@ function PhotoCard({ src, index, onClick }: { src: string, index: number, onClic
       className="break-inside-avoid relative group cursor-pointer"
     >
       <div className="relative overflow-hidden rounded-[24px] md:rounded-[32px] bg-black/5 aspect-auto border border-white/5 transition-all duration-500 group-hover:border-white/20 group-hover:shadow-2xl group-hover:shadow-purple-500/10">
-        <Image \n          src={src} \n          alt={`Photography ${index + 1}`}\n          width={800}\n          height={1000}\n          quality={100}\n          sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"\n          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"\n        />
+        <Image
+          src={src}
+          alt={`Photography ${index + 1}`}
+          width={800}
+          height={1000}
+          quality={100}
+          sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
+          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+        />
         
         {/* Subtle Overlay on Hover */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
