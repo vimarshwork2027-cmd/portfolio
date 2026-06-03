@@ -66,6 +66,15 @@ export default function RootLayout({
             })(window, document, "clarity", "script", "wlxn1972vu");
           `}
         </Script>
+        <Script src="https://www.googletagmanager.com/gtag/js?id=G-XF4HV30HJ4" strategy="afterInteractive" />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-XF4HV30HJ4');
+          `}
+        </Script>
         <BackgroundAscii />
         <Nav statusText={site.status.label} />
         <main>{children}</main>
