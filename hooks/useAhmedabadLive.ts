@@ -11,6 +11,7 @@ export type LiveData = {
   feelsLike: number;
   windSpeed: number;
   sunset: string;
+  precipitation: number;
 };
 
 export function useAhmedabadLive() {
@@ -25,13 +26,14 @@ export function useAhmedabadLive() {
     feelsLike: 32,
     windSpeed: 10,
     sunset: '19:00',
+    precipitation: 0,
   });
 
   useEffect(() => {
     async function fetchLive() {
       try {
         const [weatherRes, aqiRes] = await Promise.all([
-          fetch('https://api.open-meteo.com/v1/forecast?latitude=23.0225&longitude=72.5714&current=temperature_2m,relative_humidity_2m,apparent_temperature,wind_speed_10m,weather_code,is_day&daily=sunset&timezone=Asia%2FKolkata'),
+          fetch('https://api.open-meteo.com/v1/forecast?latitude=23.0225&longitude=72.5714&current=temperature_2m,relative_humidity_2m,apparent_temperature,wind_speed_10m,weather_code,is_day,precipitation&daily=sunset&timezone=Asia%2FKolkata&models=gfs_seamless'),
           fetch('https://air-quality-api.open-meteo.com/v1/air-quality?latitude=23.0225&longitude=72.5714&current=us_aqi&timezone=Asia%2FKolkata')
         ]);
 
@@ -58,6 +60,7 @@ export function useAhmedabadLive() {
           feelsLike: weatherData.current.apparent_temperature,
           windSpeed: weatherData.current.wind_speed_10m,
           sunset: parsedSunset,
+          precipitation: weatherData.current.precipitation || 0,
           aqi: aqiData.current.us_aqi,
           hour: currentHour,
           status: 'success'

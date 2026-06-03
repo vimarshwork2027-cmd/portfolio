@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import { LiveData } from "../hooks/useAhmedabadLive";
 
 export function WeatherBackground({ data, isNight }: { data: LiveData; isNight?: boolean }) {
-  const { temperature, humidity, weatherCode, aqi, hour, status, feelsLike, windSpeed, sunset } = data;
+  const { temperature, humidity, weatherCode, aqi, hour, status, feelsLike, windSpeed, sunset, precipitation } = data;
 
   const [rotatingIndex, setRotatingIndex] = useState(0);
   
@@ -20,11 +20,11 @@ export function WeatherBackground({ data, isNight }: { data: LiveData; isNight?:
     return <div className="absolute inset-0 z-0 bg-slate-50 transition-colors duration-1000" />;
   }
 
-  // Weather conditions
+  // Weather conditions — require both weather code AND actual precipitation to show rain
   const rainCodes = [51, 53, 55, 56, 57, 61, 63, 65, 66, 67, 80, 81, 82];
   const thunderCodes = [95, 96, 99];
-  const isRaining = rainCodes.includes(weatherCode);
-  const isThunder = thunderCodes.includes(weatherCode);
+  const isRaining = rainCodes.includes(weatherCode) && precipitation > 0;
+  const isThunder = thunderCodes.includes(weatherCode) && precipitation > 0;
 
   // Time of day base
   let baseGradient = "from-sky-100 to-white";
