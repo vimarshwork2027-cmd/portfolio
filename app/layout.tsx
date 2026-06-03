@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     default: "Vimarsh Tiwari — Product Designer",
     template: "%s — Vimarsh Tiwari",
   },
-  description: "Product designer for consumer apps used by 20M+ people. Currently at AllEvents.",
+  description: "Product designer obsessed with growth, retention, and consumer apps at scale.",
   keywords: ["product designer", "growth design", "B2C design", "AllEvents", "Vimarsh Tiwari"],
   authors: [{ name: "Vimarsh Tiwari" }],
   icons: {
