@@ -154,7 +154,8 @@ export function Hero({
               src={profilePhotoUrl || "/images/about/about.JPG"} 
               alt="Vimarsh Tiwari"
               fill
-              quality={100}
+              priority
+              quality={75}
               sizes="(max-width: 768px) 128px, 160px"
               className="object-cover scale-[1.1] group-hover:scale-[1.05] transition-all duration-[2000ms] ease-[cubic-bezier(0.25,1,0.5,1)] object-[center_75%]"
             />

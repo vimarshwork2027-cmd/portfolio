@@ -154,8 +154,10 @@ function ExperimentCard({
               <div className="absolute inset-0 w-full h-full bg-black">
                 {experiment.mediaUrl.match(/\.(mp4|mov|webm)$|video/i) ? (
                   <video src={experiment.mediaUrl} autoPlay loop muted playsInline className="w-full h-full object-cover" />
+                ) : experiment.mediaUrl.match(/\.gif$/i) ? (
+                  <img src={experiment.mediaUrl} alt={experiment.title} className="w-full h-full object-cover" />
                 ) : (
-                  <Image src={experiment.mediaUrl} alt={experiment.title} fill quality={100} sizes="(max-width: 768px) 320px, 450px" className="object-cover" />
+                  <Image src={experiment.mediaUrl} alt={experiment.title} fill quality={75} sizes="(max-width: 768px) 320px, 450px" className="object-cover" />
                 )}
               </div>
             ) : (

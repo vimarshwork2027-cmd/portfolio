@@ -100,7 +100,7 @@ export function Nav({ statusText }: { statusText?: string }) {
                className="overflow-hidden rounded-full shrink-0 flex items-center justify-center bg-black/5 hidden md:flex"
                transition={{ type: "spring", stiffness: 400, damping: 30 }}
             >
-               <Image src="/images/about/about.JPG" alt="Vimarsh" width={24} height={24} quality={100} className="min-w-[24px] object-cover object-[center_90%] scale-[1.5]" />
+               <Image src="/images/about/about.JPG" alt="Vimarsh" width={24} height={24} className="min-w-[24px] object-cover object-[center_90%] scale-[1.5]" />
             </motion.div>
             
             <motion.div 

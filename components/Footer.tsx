@@ -52,7 +52,7 @@ export function Footer({ email, socials }: FooterProps) {
                 transition={{ type: "spring", stiffness: 260, damping: 20 }}
                 className="relative w-10 h-10 rounded-full overflow-hidden flex-shrink-0 mt-1 shadow-[0_2px_8px_rgba(0,0,0,0.08)]"
               >
-                <Image src="/images/about/about.JPG" alt="Vimarsh" fill quality={100} sizes="40px" className="object-cover" />
+                <Image src="/images/about/about.JPG" alt="Vimarsh" fill sizes="40px" className="object-cover" />
               </motion.div>
               
               {isBubbleInView && (

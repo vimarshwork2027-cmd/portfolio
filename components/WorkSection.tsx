@@ -48,7 +48,8 @@ function FeaturedCaseStudy({ project }: { project: any }) {
               src={project.heroImageUrl} 
               alt={project.title}
               fill
-              quality={100}
+              priority
+              quality={75}
               sizes="(max-width: 768px) 100vw, 50vw"
               className="object-cover"
             />
@@ -154,7 +155,7 @@ export function WorkSection({
                   <div className="flex items-center gap-6">
                     <div className="relative w-12 h-12 flex-shrink-0 flex items-center justify-center overflow-hidden">
                       {exp.logo ? (
-                        <Image src={exp.logo} alt={exp.company} fill quality={100} sizes="48px" className="object-contain mix-blend-multiply opacity-80 group-hover:opacity-100 transition-opacity" />
+                        <Image src={exp.logo} alt={exp.company} fill sizes="48px" className="object-contain mix-blend-multiply opacity-80 group-hover:opacity-100 transition-opacity" />
                       ) : (
                         <div className="w-full h-full bg-black/5 rounded-full flex items-center justify-center text-ink-dim font-bold text-lg">
                           {exp.company[0]}

@@ -49,7 +49,7 @@ export function CaseStudyCard({
               src={caseStudy.heroImageUrl} 
               alt={caseStudy.title}
               fill
-              quality={100}
+              quality={75}
               sizes="(max-width: 768px) 100vw, 50vw"
               className="object-cover transition-transform duration-700 ease-out-expo group-hover:scale-110"
             />

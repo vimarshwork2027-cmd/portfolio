@@ -222,8 +222,7 @@ export function PhotographySection() {
                 alt="Selected photography"
                 width={1600}
                 height={1200}
-                quality={100}
-                unoptimized
+                quality={80}
                 className="w-full h-auto max-h-[85vh] md:max-h-[90vh] object-contain select-none"
               />
             </motion.div>
@@ -264,7 +263,7 @@ function PhotoCard({ src, index, onClick }: { src: string, index: number, onClic
           alt={`Photography ${index + 1}`}
           width={800}
           height={1000}
-          quality={100}
+          quality={70}
           sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
         />

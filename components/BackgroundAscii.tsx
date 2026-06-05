@@ -9,6 +9,7 @@ const DENSITY = 0.04; // Percentage of grid cells occupied
 export function BackgroundAscii() {
   const [mounted, setMounted] = useState(false);
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
+  const [ready, setReady] = useState(false);
 
   useEffect(() => {
     setMounted(true);
@@ -19,6 +20,13 @@ export function BackgroundAscii() {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
+
+  // Defer rendering by 1.5s so critical content (images, fonts) loads first
+  useEffect(() => {
+    if (!mounted) return;
+    const timer = setTimeout(() => setReady(true), 1500);
+    return () => clearTimeout(timer);
+  }, [mounted]);
 
   // Generate a fixed set of characters with positions
   const charData = useMemo(() => {
@@ -45,7 +53,7 @@ export function BackgroundAscii() {
     return data;
   }, [dimensions]);
 
-  if (!mounted) return null;
+  if (!mounted || !ready) return null;
 
   return (
     <div className="fixed inset-0 z-[-1] pointer-events-none select-none overflow-hidden bg-bg">

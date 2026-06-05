@@ -40,14 +40,14 @@ export const site = {
       company: "Avetria AI",
       role: "Freelance Product Designer",
       duration: "April 2026 - Present",
-      logo: "/images/logos/avetriaai.png",
+      logo: "/images/logos/avetriaai.webp",
       projects: [
         {
           id: "avetria-ai-growth",
           slug: "avetria-ai-growth",
           title: "Building FirstDraft for AI Newsrooms",
           description: "Building autonomous growth loops using LLMs to drive user acquisition and retention.",
-          heroImageUrl: "/images/case-studies/avetria-ai-growth/firstdraft.png",
+          heroImageUrl: "/images/case-studies/avetria-ai-growth/firstdraft.webp",
           bgColor: "#F1F0FF",
           date: "April 2026",
           category: "AI / Growth",
@@ -60,14 +60,14 @@ export const site = {
       company: "AllEvents",
       role: "Product Designer",
       duration: "June 2025 - April 2026",
-      logo: "/images/logos/alleventslogo.png",
+      logo: "/images/logos/alleventslogo.webp",
       projects: [
         {
           id: "app-revamp",
           slug: "app-revamp",
           title: "Reimagining how 200K users find events",
           description: "A complete visual and structural overhaul of the AllEvents mobile experience.",
-          heroImageUrl: "/images/case-studies/app-revamp/AppRevamp.png",
+          heroImageUrl: "/images/case-studies/app-revamp/AppRevamp.webp",
           bgColor: "#1A1A1A",
           date: "Feb 2026",
           category: "System Design",
@@ -79,7 +79,7 @@ export const site = {
           slug: "things-to-do",
           title: "Expanding AllEvents from Events to Experiences",
           description: "A new way to discover local activities beyond just events.",
-          heroImageUrl: "/images/case-studies/things-to-do/thingstodo.png",
+          heroImageUrl: "/images/case-studies/things-to-do/thingstodo.webp",
           bgColor: "#F1F0FF",
           date: "Feb 2026",
           category: "Product Design",
@@ -91,7 +91,7 @@ export const site = {
           slug: "map-discovery",
           title: "Discovering events through maps",
           description: "Leveraging spatial context to help users find events happening exactly where they are.",
-          heroImageUrl: "/images/case-studies/map-discovery/discoverythroughmaps.png",
+          heroImageUrl: "/images/case-studies/map-discovery/discoverythroughmaps.webp",
           bgColor: "#D9D9FB",
           date: "Jan 2026",
           category: "Spatial UI",
@@ -116,14 +116,14 @@ export const site = {
       company: "Glint",
       role: "Co-founder",
       duration: "Jan 2024 - June 2025",
-      logo: "/images/logos/glintlogo.png",
+      logo: "/images/logos/glintlogo.webp",
       projects: [
         {
           id: "dating-app",
           slug: "dating-app",
           title: "Mixer dating",
           description: "A social discovery app focused on meaningful connections.",
-          heroImageUrl: "/images/case-studies/mixer-dating/mixer dating.png",
+          heroImageUrl: "/images/case-studies/mixer-dating/mixer dating.webp",
           bgColor: "#F0D4B1",
           date: "June 2025",
           category: "Social",
@@ -136,7 +136,7 @@ export const site = {
           slug: "project-astra",
           title: "Project Astra",
           description: "Exploring the intersection of AI and spatial computing.",
-          heroImageUrl: "/images/case-studies/project-astra/projectastra.png",
+          heroImageUrl: "/images/case-studies/project-astra/projectastra.webp",
           bgColor: "#D4B1F0",
           date: "May 2025",
           category: "Experimental",
@@ -149,7 +149,7 @@ export const site = {
           slug: "ttr-edge",
           title: "TTR Edge Imaging",
           description: "Redesigning the web presence for a specialized imaging company.",
-          heroImageUrl: "/images/case-studies/ttr-edge/ttredge.png",
+          heroImageUrl: "/images/case-studies/ttr-edge/ttredge.webp",
           bgColor: "#B1D4F0",
           date: "Mar 2025",
           category: "Web Design",
@@ -172,7 +172,7 @@ export const site = {
       quote: "Solid UI skills, a great eye for visual inspiration, and a natural curiosity that helps him quickly understand both design and product problems. His work ethic and reliability make him a valuable addition to any product team.",
       name: "Achyuth Yarramsetti",
       title: "Lead Product Designer, AllEvents",
-      photoUrl: "/images/testimonials/achyuth.png"
+      photoUrl: "/images/testimonials/achyuth.webp"
     },
     {
       quote: "He brought a strong design sensibility and attention to detail that resulted in a website we're genuinely proud of. The visuals are polished, cohesive, and a true reflection of our brand.",
@@ -190,7 +190,7 @@ export const site = {
       quote: "One of the most creative product designers I've worked with. Clean UI, strong product thinking, and a collaborator who elevates everyone around him.",
       name: "Jaiman Soni",
       title: "Co-founder, Glint",
-      photoUrl: "/images/testimonials/jaimansoni.png"
+      photoUrl: "/images/testimonials/jaimansoni.webp"
     }
   ],
 
@@ -259,7 +259,7 @@ export const site = {
       { id: "book-2", type: "book", label: "The Cold Start Problem", src: "/images/about/pegboard/pegboard-book-front2.jpg", thickness: 32, width: 135, color: "#1C49E6", x: 0, y: 0, bucketId: "s2" },
       { id: "book-3", type: "book", label: "Alan Turing: The Enigma", src: "/images/about/pegboard/pegboard-book-front3.jpg", thickness: 45, width: 140, color: "#121212", x: 0, y: 0, bucketId: "s2" },
       { id: "book-4", type: "book", label: "Steve Jobs", src: "/images/about/pegboard/pegboard-book-front4.webp", thickness: 40, width: 140, color: "#FFFFFF", x: 0, y: 0, bucketId: "s2" },
-      { id: "b1", type: "object", src: "/images/about/pegboard/pegboard-object.png", x: 0, y: 0, bucketId: "s1" },
+      { id: "b1", type: "object", src: "/images/about/pegboard/pegboard-object.webp", x: 0, y: 0, bucketId: "s1" },
     ]
   },
 

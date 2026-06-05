@@ -207,7 +207,7 @@ export const caseStudies: CaseStudy[] = [
     timeline: "2 weeks · Concept → live MVP",
     scope: "Loop mechanic design, share flow, entry architecture",
     status: "live",
-    logo: "/images/logos/alleventslogo.png",
+    logo: "/images/logos/alleventslogo.webp",
     date: "2025-11-10",
     tags: ["Growth", "Viral Loops", "B2C Mobile"],
     metrics: [
@@ -266,7 +266,7 @@ export const caseStudies: CaseStudy[] = [
       {
         id: "outline",
         image: "/images/case-studies/viral-contest/contest.gif",
-        imageBefore: "/images/case-studies/viral-contest/contests.png",
+        imageBefore: "/images/case-studies/viral-contest/contests.webp",
       },
       {
         id: "about",
@@ -298,10 +298,10 @@ export const caseStudies: CaseStudy[] = [
         fullWidth: false,
         content: "<div class='font-sans font-medium text-[20px] tracking-tight mb-6 text-black/90'>User behaviour</div>In the real world, <strong>people rarely attend events alone</strong> — they plan and experience them with friends. Yet, inside AllEvents, this journey was surprisingly lonely. Users were RSVPing in isolation, while shared links often led friends to the web instead of the app.",
         gridImages: [
-          "/images/case-studies/viral-contest/attendingwithfriends.png",
-          "/images/case-studies/viral-contest/attendingwithfriends2.png",
-          "/images/case-studies/viral-contest/attendingwithfriends3.png",
-          "/images/case-studies/viral-contest/attendingwithfriends4.png"
+          "/images/case-studies/viral-contest/attendingwithfriends.webp",
+          "/images/case-studies/viral-contest/attendingwithfriends2.webp",
+          "/images/case-studies/viral-contest/attendingwithfriends3.webp",
+          "/images/case-studies/viral-contest/attendingwithfriends4.webp"
         ],
         gridCaveat: "People going alone to events is very very rare use case",
         secondaryContent: "<div class='font-sans font-medium text-[20px] tracking-tight mb-6 text-black/90'>Problem</div>This fragmentation meant missing a major opportunity for <strong>organic app downloads</strong>. Instead of forcing installs, we needed a way to naturally bring <strong>real-world circles into the app</strong>, allowing friend groups to exist inside AllEvents.<br/><br/>This insight became the foundation for a new growth initiative to make AllEvents viral within friend groups. If we could encourage users to bring their friends onto the app, we could:",
@@ -330,7 +330,7 @@ export const caseStudies: CaseStudy[] = [
         title: "Ideation & Early Direction",
         navLabel: "Ideation",
         isImportant: false,
-        content: "<span class='text-[32px] md:text-[42px] text-black/20 italic leading-[1.1] mb-10 block font-sans tracking-tight'>How might we design viral incentives that encourage users to invite their friends, turning social connections into a driver for organic app growth?</span><div class='mb-12'><img src='/images/case-studies/viral-contest/ideation.png' class='w-full max-w-4xl h-auto' /></div>We explored multiple acquisition models for social-driven acquisition — referral bonuses, invite-based rewards, and group discounts. While each had potential, they felt transactional and didn't match how people emotionally experience events. Events are social, memorable, shared with friends — not coupons.",
+        content: "<span class='text-[32px] md:text-[42px] text-black/20 italic leading-[1.1] mb-10 block font-sans tracking-tight'>How might we design viral incentives that encourage users to invite their friends, turning social connections into a driver for organic app growth?</span><div class='mb-12'><img src='/images/case-studies/viral-contest/ideation.webp' class='w-full max-w-4xl h-auto' /></div>We explored multiple acquisition models for social-driven acquisition — referral bonuses, invite-based rewards, and group discounts. While each had potential, they felt transactional and didn't match how people emotionally experience events. Events are social, memorable, shared with friends — not coupons.",
         noContainer: true
       },
       {
@@ -343,12 +343,12 @@ export const caseStudies: CaseStudy[] = [
         content: "Then came the insight:<br/><br/><strong class='block text-[17px] md:text-[20px] leading-tight'><span class='magical-shimmer'>People don’t share events for discounts. They share experiences worth talking about.</span></strong><br/><br/>Coldplay. Samay Raina. Major festivals.<br/>The kind of events people dream of attending.",
         secondaryContent: "<strong>One key idea:</strong><br/>Win tickets to iconic events by inviting friends.<br/><br/>The emotional pull was strong enough to drive sharing naturally, regardless of where the event was hosted.",
         marqueeImages: [
-          "/images/case-studies/viral-contest/breakthrough1.png",
-          "/images/case-studies/viral-contest/breakthrough2.png",
-          "/images/case-studies/viral-contest/breakthrough3.png",
-          "/images/case-studies/viral-contest/breakthrough4.png",
-          "/images/case-studies/viral-contest/breakthrough5.png",
-          "/images/case-studies/viral-contest/breakthrough6.png"
+          "/images/case-studies/viral-contest/breakthrough1.webp",
+          "/images/case-studies/viral-contest/breakthrough2.webp",
+          "/images/case-studies/viral-contest/breakthrough3.webp",
+          "/images/case-studies/viral-contest/breakthrough4.webp",
+          "/images/case-studies/viral-contest/breakthrough5.webp",
+          "/images/case-studies/viral-contest/breakthrough6.webp"
         ]
       },
       {
@@ -357,7 +357,7 @@ export const caseStudies: CaseStudy[] = [
         navLabel: "MVP",
         isImportant: true,
         content: "We built a simple contest around a highly popular or sold-out event — something users genuinely cared about.<br/><br/>For each contest, we selected one iconic event and secured four tickets through our contacts: two winners, two tickets each.",
-        image: "/images/case-studies/viral-contest/pointssystem.png",
+        image: "/images/case-studies/viral-contest/pointssystem.webp",
         imageTitle: "How Users Earned Points",
         noContainer: true,
         noRadius: true,
@@ -375,7 +375,7 @@ export const caseStudies: CaseStudy[] = [
         title: "User Flow",
         navLabel: "Flow",
         isImportant: false,
-        image: "/images/case-studies/viral-contest/userflow-1.png",
+        image: "/images/case-studies/viral-contest/userflow-1.webp",
         noContainer: true,
         noRadius: true,
         fullWidth: true
@@ -385,7 +385,7 @@ export const caseStudies: CaseStudy[] = [
         title: "Iteration 01 — MVP Design",
         navLabel: "MVP",
         isImportant: false,
-        image: "/images/case-studies/viral-contest/iteration1.png",
+        image: "/images/case-studies/viral-contest/iteration1.webp",
         noContainer: true,
         noRadius: true,
         fullWidth: true,
@@ -395,7 +395,7 @@ export const caseStudies: CaseStudy[] = [
         id: "impact-01",
         title: "Impact — Iteration 01",
         navLabel: "Impact",
-        image: "/images/case-studies/viral-contest/Impact-1.png",
+        image: "/images/case-studies/viral-contest/Impact-1.webp",
         noContainer: true,
         noRadius: true,
         fullWidth: true,
@@ -410,7 +410,7 @@ export const caseStudies: CaseStudy[] = [
         title: "2nd Iteration",
         navLabel: "Loop",
         isImportant: false,
-        image: "/images/case-studies/viral-contest/userflow-2.png",
+        image: "/images/case-studies/viral-contest/userflow-2.webp",
         imageTitle: "Updated User Flow",
         noContainer: true,
         noRadius: true,
@@ -421,7 +421,7 @@ export const caseStudies: CaseStudy[] = [
         id: "iteration-02",
         title: "Iteration 02 — The Solution",
         navLabel: "Solution",
-        image: "/images/case-studies/viral-contest/iteration2.png",
+        image: "/images/case-studies/viral-contest/iteration2.webp",
         noContainer: true,
         noRadius: true,
         fullWidth: true,
@@ -431,7 +431,7 @@ export const caseStudies: CaseStudy[] = [
         id: "impact-02",
         title: "Impact — Iteration 02",
         navLabel: "Impact",
-        image: "/images/case-studies/viral-contest/Impact-2.png",
+        image: "/images/case-studies/viral-contest/impact-2.webp",
         noContainer: true,
         noRadius: true,
         fullWidth: true,
@@ -440,7 +440,7 @@ export const caseStudies: CaseStudy[] = [
       {
         id: "comparison",
         content: "<div class='font-sans font-medium text-[20px] tracking-tight mb-6 text-black/90'>Before vs After</div>",
-        image: "/images/case-studies/viral-contest/beforevsafter.png",
+        image: "/images/case-studies/viral-contest/beforevsafter.webp",
         noRadius: true
       },
       {
@@ -464,17 +464,17 @@ export const caseStudies: CaseStudy[] = [
         {
           title: "Redesigning the Loop",
           description: "Converted passive sharing into mandatory referral loops.",
-          image: "/images/case-studies/viral-contest/summary1.png"
+          image: "/images/case-studies/viral-contest/summary1.webp"
         },
         {
           title: "Gamifying Participation",
           description: "Tiered leaderboards transformed participation into competition.",
-          image: "/images/case-studies/viral-contest/summary2.png"
+          image: "/images/case-studies/viral-contest/summary2.webp"
         },
         {
           title: "Building Trust",
           description: "Driven 6.1K app downloads via pure organic virality.",
-          image: "/images/case-studies/viral-contest/summary3.png"
+          image: "/images/case-studies/viral-contest/summary3.webp"
         }
       ],
       reviews: [
